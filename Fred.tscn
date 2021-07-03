@@ -21,10 +21,36 @@ frames = ExtResource( 1 )
 animation = "idle"
 
 [node name="JumpTimer" type="Timer" parent="."]
+wait_time = 0.6
 one_shot = true
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="FlipTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="FloorCast" type="RayCast2D" parent="."]
 enabled = true
-cast_to = Vector2( 0, 20 )
+cast_to = Vector2( 0, 26 )
+
+[node name="LineCastLeft" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( -5, 0 )
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="LineCastRight" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 5, 0 )
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="TileMapCastLeft" type="RayCast2D" parent="."]
+position = Vector2( -10, -10 )
+cast_to = Vector2( -15, 0 )
+
+[node name="TileMapCastRight" type="RayCast2D" parent="."]
+position = Vector2( 10, -10 )
+cast_to = Vector2( 15, 0 )
 
 [connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
+[connection signal="timeout" from="FlipTimer" to="." method="_on_FlipTimer_timeout"]
