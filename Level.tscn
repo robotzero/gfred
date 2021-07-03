@@ -2,7 +2,7 @@
 
 [ext_resource path="res://StoneTileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Fred.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Ropes.tres" type="TileSet" id=3]
+[ext_resource path="res://Rope.tscn" type="PackedScene" id=3]
 
 [node name="Level" type="Node2D"]
 
@@ -29,8 +29,32 @@ drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 editor_draw_drag_margin = true
 
-[node name="Ropes" type="TileMap" parent="."]
-tile_set = ExtResource( 3 )
-cell_size = Vector2( 7, 40 )
-format = 1
-tile_data = PoolIntArray( 262200, 0, 2, 327736, 0, 1, 393272, 0, 1, 458808, 0, 1, 524344, 0, 1, 589880, 0, 1, 655416, 0, 1, 720952, 0, 1, 786488, 0, 1, 852024, 0, 0 )
+[node name="Rope" parent="." instance=ExtResource( 3 )]
+position = Vector2( 398, 180 )
+
+[node name="Rope2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 398, 220.08 )
+
+[node name="Rope3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 398, 259.972 )
+
+[node name="Rope4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 398, 300.132 )
+
+[node name="Rope5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 398, 340.292 )
+
+[node name="Rope6" parent="." instance=ExtResource( 3 )]
+position = Vector2( 398, 380.137 )
+
+[node name="Rope7" parent="." instance=ExtResource( 3 )]
+position = Vector2( 398, 420.14 )
+
+[node name="Rope8" parent="." instance=ExtResource( 3 )]
+position = Vector2( 398, 460.3 )
+
+[node name="Rope9" parent="." instance=ExtResource( 3 )]
+position = Vector2( 398, 500.58 )
+
+[node name="Rope10" parent="." instance=ExtResource( 3 )]
+position = Vector2( 398, 532.731 )

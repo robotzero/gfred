@@ -8,6 +8,22 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Fred",
+"language": "GDScript",
+"path": "res://Fred.gd"
+}, {
+"base": "Area2D",
+"class": "Rope",
+"language": "GDScript",
+"path": "res://Rope.gd"
+} ]
+_global_script_class_icons={
+"Fred": "",
+"Rope": ""
+}
+
 [application]
 
 config/name="Gfred"

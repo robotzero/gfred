@@ -24,6 +24,7 @@ animation = "idle"
 one_shot = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-cast_to = Vector2( 0, 40 )
+enabled = true
+cast_to = Vector2( 0, 20 )
 
 [connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]

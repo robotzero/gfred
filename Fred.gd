@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Fred
 
 var velocity:Vector2 = Vector2(0, 0)
 const STONE_HEIGHT:int = 40
@@ -9,6 +10,8 @@ const SIMPLE_JUMP_INPX:int = -int(STONE_HEIGHT * 0.2)
 var isJumping:bool = false
 var isOnTheFloor:bool = true
 var isWalking:bool = true
+
+onready var fredRaycast:RayCast2D = $RayCast2D
 
 func _physics_process(delta):
 	velocity = Vector2(0, 0)
@@ -26,7 +29,7 @@ func _physics_process(delta):
 		$Sprite.play("idle")
 		isWalking = false
 	
-	if Input.is_action_just_pressed("jump") and !isJumping and !isWalking:	
+	if Input.is_action_just_pressed("jump") and !isJumping and isOnTheFloor:
 		position.y = position.y + SIMPLE_JUMP_INPX
 		isJumping = true
 		$Sprite.play("jump")
@@ -38,11 +41,12 @@ func _physics_process(delta):
 	velocity = velocity.normalized() * SPEED
 	var collision = move_and_collide(velocity * delta)
 	isOnTheFloor = is_on_floor_custom(collision)
-	#print(isOnTheFloor)
 		
 func is_on_floor_custom(var collision):
-	# @TODO only stone collision object and also it does not work when you are moving (raycast?)
+	# @TODO only stone collision object
 	if (collision != null and collision.normal.x == 0 and collision.normal.y == -1):
+		return true
+	if fredRaycast.is_colliding() and fredRaycast.get_collision_normal().y == -1 :
 		return true
 	return false
 		
