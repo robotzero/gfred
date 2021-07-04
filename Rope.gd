@@ -1,15 +1,17 @@
 extends Area2D
 class_name Rope
 
-#var fred: Fred = null
+var fred = null
+var isBottom: bool = false
 
 func _on_Rope_body_entered(body):
-	pass
-#	if body is Fred:
-#		fred = body
+	if body is KinematicBody2D:
+		fred = body
+		fred.setRopeCollider(self)
 
 
 func _on_Rope_body_exited(body):
-	pass
-#	if body is Fred:
-#		fred = null
+	if body is KinematicBody2D:
+		if not fred.isClimbing():
+			fred.setRopeCollider(null)
+			fred = null

@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 13.6914
-height = 4.26073
+height = 5.00989
 
 [node name="Fred" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -30,27 +30,41 @@ one_shot = true
 
 [node name="FloorCast" type="RayCast2D" parent="."]
 enabled = true
-cast_to = Vector2( 0, 26 )
+cast_to = Vector2( 0, 25 )
 
 [node name="LineCastLeft" type="RayCast2D" parent="."]
-enabled = true
 cast_to = Vector2( -5, 0 )
 collide_with_areas = true
 collide_with_bodies = false
 
 [node name="LineCastRight" type="RayCast2D" parent="."]
-enabled = true
 cast_to = Vector2( 5, 0 )
 collide_with_areas = true
 collide_with_bodies = false
 
 [node name="TileMapCastLeft" type="RayCast2D" parent="."]
 position = Vector2( -10, -10 )
+enabled = true
 cast_to = Vector2( -15, 0 )
+collide_with_areas = true
 
 [node name="TileMapCastRight" type="RayCast2D" parent="."]
 position = Vector2( 10, -10 )
+enabled = true
 cast_to = Vector2( 15, 0 )
+collide_with_areas = true
+
+[node name="TileMapCastLeft2" type="RayCast2D" parent="."]
+position = Vector2( -10, 10 )
+enabled = true
+cast_to = Vector2( -15, 0 )
+collide_with_areas = true
+
+[node name="TileMapCastRight2" type="RayCast2D" parent="."]
+position = Vector2( 10, 10 )
+enabled = true
+cast_to = Vector2( 15, 0 )
+collide_with_areas = true
 
 [connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
 [connection signal="timeout" from="FlipTimer" to="." method="_on_FlipTimer_timeout"]
