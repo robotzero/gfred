@@ -177,11 +177,9 @@ func isNearLineVicinity():
 	if currentRopeCollider:
 		return true
 	if $Sprite.flip_h and lineCastLeft.is_colliding() and lineCastLeft.get_collision_normal().x == 1:
-		print("coll")
 		currentRopeCollider = lineCastLeft.get_collider()
 		return true
 	elif $Sprite.flip_h == false and lineCastRight.is_colliding() and lineCastRight.get_collision_normal().x == -1:
-		print("coll")
 		currentRopeCollider = lineCastRight.get_collider()
 		return true
 	if currentRopeCollider == null:
@@ -209,6 +207,7 @@ func isClimbing():
 	return climbing
 	
 func shouldStopJumpingOff(tileMapCast):
+	print(tileMapCast.get_collider())
 	return tileMapCast.is_colliding() and tileMapCast.get_collider() is TileMap
 	
 func shouldStartJumpingOn(tileMapCast):
