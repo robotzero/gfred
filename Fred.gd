@@ -192,7 +192,6 @@ func isNearLineVicinity():
 func calculateCorrectedVerticalPosition():
 	if currentRopeCollider:
 		var currentPos = currentRopeCollider.position.x
-		var fredPos = position.x
 		return currentPos + 1
 	return 0
 
@@ -207,7 +206,6 @@ func isClimbing():
 	return climbing
 	
 func shouldStopJumpingOff(tileMapCast):
-	print(tileMapCast.get_collider())
 	return tileMapCast.is_colliding() and tileMapCast.get_collider() is TileMap
 	
 func shouldStartJumpingOn(tileMapCast):
