@@ -25,6 +25,12 @@ __meta__ = {
 
 [node name="InternalPyramid" parent="." instance=ExtResource( 6 )]
 position = Vector2( 0, -1 )
+collision_layer = 1
+collision_mask = 1
+script = null
+
+[node name="Ghost" parent="." instance=ExtResource( 5 )]
+position = Vector2( 181.106, 547 )
 
 [node name="Fred" parent="." instance=ExtResource( 2 )]
 position = Vector2( 302.723, 546 )
@@ -66,15 +72,6 @@ position = Vector2( 398, 498.58 )
 
 [node name="Bottom1" parent="." instance=ExtResource( 3 )]
 position = Vector2( 398, 538.731 )
-
-[node name="Bottom2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 207.743, 539.731 )
-
-[node name="Rope10" parent="." instance=ExtResource( 3 )]
-position = Vector2( 207.743, 499.322 )
-
-[node name="Top2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 207.743, 458.914 )
 
 [node name="Bottom3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 271.723, 539.731 )
@@ -342,6 +339,3 @@ position = Vector2( 527.748, 178.997 )
 
 [node name="Rope15" parent="." instance=ExtResource( 3 )]
 position = Vector2( 46.5836, 99.863 )
-
-[node name="Ghost" parent="." instance=ExtResource( 5 )]
-position = Vector2( 76.7038, 542.873 )
