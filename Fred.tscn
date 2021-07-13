@@ -1,18 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Fred_Frames.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Fred.gd" type="Script" id=2]
+[ext_resource path="res://FredStateMachine.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 13.6914
 height = 5.00989
 
 [node name="Fred" type="KinematicBody2D"]
-collision_mask = 12
+collision_mask = 28
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -32,6 +36,7 @@ one_shot = true
 [node name="FloorCast" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 0, 25 )
+collision_mask = 12
 
 [node name="LineCastLeft" type="RayCast2D" parent="."]
 cast_to = Vector2( -5, 0 )
@@ -47,24 +52,28 @@ collide_with_bodies = false
 position = Vector2( -10, -10 )
 enabled = true
 cast_to = Vector2( -15, 0 )
+collision_mask = 16
 collide_with_areas = true
 
 [node name="TileMapCastRight" type="RayCast2D" parent="."]
 position = Vector2( 10, -10 )
 enabled = true
 cast_to = Vector2( 15, 0 )
+collision_mask = 16
 collide_with_areas = true
 
 [node name="TileMapCastLeft2" type="RayCast2D" parent="."]
 position = Vector2( -10, 10 )
 enabled = true
 cast_to = Vector2( -15, 0 )
+collision_mask = 16
 collide_with_areas = true
 
 [node name="TileMapCastRight2" type="RayCast2D" parent="."]
 position = Vector2( 10, 10 )
 enabled = true
 cast_to = Vector2( 15, 0 )
+collision_mask = 16
 collide_with_areas = true
 
 [connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]

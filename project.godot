@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "Rope",
 "language": "GDScript",
 "path": "res://Rope.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://StateMachine.gd"
 } ]
 _global_script_class_icons={
 "ExternalPyramid": "",
 "Fred": "",
 "Ghost": "",
-"Rope": ""
+"Rope": "",
+"StateMachine": ""
 }
 
 [application]
@@ -89,6 +95,7 @@ cameraDebug={
 2d_physics/layer_2="ghost"
 2d_physics/layer_3="internaltilemap"
 2d_physics/layer_4="externaltilemap"
+2d_physics/layer_5="rope"
 
 [physics]
 

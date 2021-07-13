@@ -12,6 +12,7 @@ script = ExtResource( 4 )
 
 [node name="DebugCamera" type="Camera2D" parent="."]
 offset = Vector2( 512, 300 )
+zoom = Vector2( 1.5, 1.5 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 1024.0

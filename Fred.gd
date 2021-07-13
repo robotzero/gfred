@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name Fred
 
-var velocity:Vector2 = Vector2(0, 0)
+var velocity:Vector2 = Vector2.ZERO
 const STONE_HEIGHT:int = 40
 const DISTANCE_TO_FLOOR_WHEN_CLIMBING:int = 22
 const DISTANCE_OF_THE_JUMP_OFF:int = 28
@@ -22,6 +22,10 @@ var jumpingOff:bool = false
 var flipping:bool = false
 var jumpingOn:bool = false
 var jumpTo:int = 0
+var potentialMoves = {
+	"jumping":false,
+	"climbing":false
+}
 
 onready var fredRaycast:RayCast2D = $FloorCast
 onready var lineCastLeft:RayCast2D = $LineCastLeft
@@ -30,9 +34,11 @@ onready var tileMapCastLeft1:RayCast2D = $TileMapCastLeft
 onready var tileMapCastRight1:RayCast2D = $TileMapCastRight
 onready var tileMapCastLeft2:RayCast2D = $TileMapCastLeft2
 onready var tileMapCastRight2:RayCast2D = $TileMapCastRight2
+onready var sprite:AnimatedSprite = $Sprite
+onready var jumpTimer:Timer = $JumpTimer
 
 func _physics_process(delta):
-	velocity = Vector2(0, 0)
+	velocity = Vector2.ZERO
 	if Input.is_action_just_pressed("right") and !Input.is_action_just_pressed("left") and !isJumping and !jumpingOff and !flipping:
 		if climbing:
 			if $Sprite.flip_h:
@@ -65,11 +71,11 @@ func _physics_process(delta):
 			jumpingOn = true
 			jumpingOnCollider = tileMapCastRight1.get_collider()
 			startJumpingOn(tileMapCastRight1.get_collider())
-		else:
-			velocity.x += 1
-			$Sprite.flip_h = false
-			$Sprite.play("walk")
-			isWalking = true
+		#else:
+		#	velocity.x += 1
+		#	$Sprite.flip_h = false
+		#	$Sprite.play("walk")
+		#	isWalking = true
 	elif Input.is_action_pressed("left") and !Input.is_action_pressed("right") and !Input.is_action_just_pressed("left") and !isJumping and !jumpingOff and !flipping and !jumpingOn:
 		if climbing:
 			if not $Sprite.flip_h and not flipping and not shouldStopJumpingOff(tileMapCastLeft1) and not shouldStopJumpingOff(tileMapCastLeft2):
@@ -84,32 +90,32 @@ func _physics_process(delta):
 			jumpingOn = true
 			jumpingOnCollider = tileMapCastLeft1.get_collider()
 			startJumpingOn(tileMapCastLeft1.get_collider())
-		else:
-			velocity.x -= 1
-			$Sprite.flip_h = true
-			$Sprite.play("walk")
-			isWalking = true
+		#else:
+		#	velocity.x -= 1
+		#	$Sprite.flip_h = true
+		#	$Sprite.play("walk")
+		#	isWalking = true
 	elif Input.is_action_pressed("up") and !isJumping and climbing and !jumpingOff and !jumpingOn:
 		velocity.y -= 1
 	elif Input.is_action_pressed("down") and !isJumping and climbing and !jumpingOff and !jumpingOn:
 		if !shouldStopGoingDown():
 			velocity.y += 1
 	elif climbing == false and !jumpingOff and !jumpingOn:
-		$Sprite.play("idle")
+		#$Sprite.play("idle")
 		isWalking = false
 	
-	if Input.is_action_just_pressed("jump") and !isWalking and !isJumping and isOnTheFloor and !jumpingOff and !jumpingOn:
-		position.y = position.y + SIMPLE_JUMP_INPX
-		climbing = isNearLineVicinity()
-		if (climbing):
-			var newPosX = calculateCorrectedVerticalPosition()
-			position.x = newPosX
-		isJumping = true
-		$Sprite.play("jump")
-		$JumpTimer.start()
+	#if Input.is_action_just_pressed("jump") and !isWalking and !isJumping and isOnTheFloor and !jumpingOff and !jumpingOn:
+	#	position.y = position.y + SIMPLE_JUMP_INPX
+	#	climbing = isNearLineVicinity()
+	#	if (climbing):
+	#		var newPosX = calculateCorrectedVerticalPosition()
+	#		position.x = newPosX
+	#	isJumping = true
+	#	$Sprite.play("jump")
+	#	$JumpTimer.start()
 		
-	if isJumping:
-		$Sprite.play("jump")
+	#if isJumping:
+	#	$Sprite.play("jump")
 		
 	if jumpingOff:
 		var distanceX = Vector2(previousRopeCollider.position.x, 0).distance_to(Vector2(position.x, 0))
@@ -121,10 +127,29 @@ func _physics_process(delta):
 	if jumpingOn:
 		startJumpingOn(jumpingOnCollider)
 			
+	#move(delta, velocity)
+	
+func _get_input():
+	#potentialMoves["jumping"] = false
+	#potentialMoves["climbing"] = false
+	velocity = Vector2.ZERO
+	if Input.is_action_pressed("left") and !Input.is_action_pressed("right") and !Input.is_action_just_pressed("left"):
+		velocity.x -= 1
+	elif Input.is_action_pressed("right") and !Input.is_action_pressed("left") and !Input.is_action_just_pressed("right"):
+		velocity.x += 1
+	elif Input.is_action_pressed("up"):
+		velocity.y -= 1
+	elif Input.is_action_pressed("down") and !shouldStopGoingDown():
+		velocity.y += 1
+	elif Input.is_action_just_pressed("jump") and !isNearLineVicinity():
+		potentialMoves["jumping"] = true
+	elif Input.is_action_just_pressed("jump") and isNearLineVicinity():
+		potentialMoves["climbing"] = true
+
+func _move(delta):
 	velocity = velocity.normalized() * SPEED
 	var collision = move_and_collide(velocity * delta)
 	isOnTheFloor = is_on_floor_custom(collision)
-	
 	
 func startJumpingOn(rope):
 	jumpingOn = true
@@ -153,7 +178,7 @@ func shouldStopGoingDown():
 		
 func _on_JumpTimer_timeout():
 	$JumpTimer.stop()
-	isJumping = false
+	#isJumping = false
 	if jumpingOff:
 		climbing = false
 		jumpingOff = false
@@ -170,8 +195,8 @@ func _on_JumpTimer_timeout():
 		jumpingOnCollider = null
 	if climbing:
 		$Sprite.play("climb")
-	else:
-		position.y = position.y - SIMPLE_JUMP_INPX
+	#else:
+	#	position.y = position.y - SIMPLE_JUMP_INPX
 
 func isNearLineVicinity():
 	if currentRopeCollider:
