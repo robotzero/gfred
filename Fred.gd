@@ -24,7 +24,9 @@ var jumpingOn:bool = false
 var jumpTo:int = 0
 var potentialMoves = {
 	"jumping":false,
-	"climbing":false
+	"climbing":false,
+	"flipping_left":false,
+	"flipping_right":false
 }
 
 onready var fredRaycast:RayCast2D = $FloorCast
@@ -36,35 +38,38 @@ onready var tileMapCastLeft2:RayCast2D = $TileMapCastLeft2
 onready var tileMapCastRight2:RayCast2D = $TileMapCastRight2
 onready var sprite:AnimatedSprite = $Sprite
 onready var jumpTimer:Timer = $JumpTimer
+onready var fredStateMachine = $StateMachine
+onready var flipTimer = $FlipTimer
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	velocity = Vector2.ZERO
-	if Input.is_action_just_pressed("right") and !Input.is_action_just_pressed("left") and !isJumping and !jumpingOff and !flipping:
-		if climbing:
-			if $Sprite.flip_h:
-				$Sprite.flip_h = true
-			else:
-				$Sprite.flip_h = true
-			flipping = true
-			$FlipTimer.start()
+	#if Input.is_action_just_pressed("right") and !Input.is_action_just_pressed("left") and !isJumping and !jumpingOff and !flipping:
+		#if climbing:
+		#	if $Sprite.flip_h:
+		#		$Sprite.flip_h = true
+		#	else:
+		#		$Sprite.flip_h = true
+		#	flipping = true
+		#	$FlipTimer.start()
 				
-	if Input.is_action_just_pressed("left") and !Input.is_action_just_pressed("right") and !isJumping and !jumpingOff and !flipping:
-		if climbing:
-			if $Sprite.flip_h:
-				$Sprite.flip_h = false
-			else:
-				$Sprite.flip_h = false
-			flipping = true
-			$FlipTimer.start()
+	#if Input.is_action_just_pressed("left") and !Input.is_action_just_pressed("right") and !isJumping and !jumpingOff and !flipping:
+		#if climbing:
+		#	if $Sprite.flip_h:
+		#		$Sprite.flip_h = false
+		#	else:
+		#		$Sprite.flip_h = false
+		#	flipping = true
+		#	$FlipTimer.start()
 		
 	if Input.is_action_pressed("right") and !Input.is_action_pressed("left") and !Input.is_action_just_pressed("right") and !isJumping and !jumpingOff and !flipping and !jumpingOn:
 		if climbing:
-			if $Sprite.flip_h and not flipping and not shouldStopJumpingOff(tileMapCastRight1) and not shouldStopJumpingOff(tileMapCastRight2):
-				$Sprite.play("jump")
-				$Sprite.flip_h = false
-				jumpingOff = true
-				previousRopeCollider = currentRopeCollider
-				jumpTo = 1
+		#	if $Sprite.flip_h and not flipping and not shouldStopJumpingOff(tileMapCastRight1) and not shouldStopJumpingOff(tileMapCastRight2):
+		#		$Sprite.play("jump")
+		#		$Sprite.flip_h = false
+		#		jumpingOff = true
+		#		previousRopeCollider = currentRopeCollider
+		#		jumpTo = 1
+			pass
 		elif shouldStartJumpingOn(tileMapCastRight1) and shouldStartJumpingOn(tileMapCastRight2):
 			jumpTo = 1
 			$Sprite.play("jump")
@@ -78,12 +83,13 @@ func _physics_process(delta):
 		#	isWalking = true
 	elif Input.is_action_pressed("left") and !Input.is_action_pressed("right") and !Input.is_action_just_pressed("left") and !isJumping and !jumpingOff and !flipping and !jumpingOn:
 		if climbing:
-			if not $Sprite.flip_h and not flipping and not shouldStopJumpingOff(tileMapCastLeft1) and not shouldStopJumpingOff(tileMapCastLeft2):
-				$Sprite.play("jump")
-				$Sprite.flip_h = true
-				jumpingOff = true
-				previousRopeCollider = currentRopeCollider
-				jumpTo = -1
+		#	if not $Sprite.flip_h and not flipping and not shouldStopJumpingOff(tileMapCastLeft1) and not shouldStopJumpingOff(tileMapCastLeft2):
+		#		$Sprite.play("jump")
+		#		$Sprite.flip_h = true
+		#		jumpingOff = true
+		#		previousRopeCollider = currentRopeCollider
+		#		jumpTo = -1
+			pass
 		elif shouldStartJumpingOn(tileMapCastLeft1) and shouldStartJumpingOn(tileMapCastLeft2):
 			jumpTo = -1
 			$Sprite.play("jump")
@@ -95,14 +101,14 @@ func _physics_process(delta):
 		#	$Sprite.flip_h = true
 		#	$Sprite.play("walk")
 		#	isWalking = true
-	elif Input.is_action_pressed("up") and !isJumping and climbing and !jumpingOff and !jumpingOn:
-		velocity.y -= 1
-	elif Input.is_action_pressed("down") and !isJumping and climbing and !jumpingOff and !jumpingOn:
-		if !shouldStopGoingDown():
-			velocity.y += 1
-	elif climbing == false and !jumpingOff and !jumpingOn:
+	#elif Input.is_action_pressed("up") and !isJumping and climbing and !jumpingOff and !jumpingOn:
+	#	velocity.y -= 1
+	#elif Input.is_action_pressed("down") and !isJumping and climbing and !jumpingOff and !jumpingOn:
+	#	if !shouldStopGoingDown():
+	#		velocity.y += 1
+	#elif climbing == false and !jumpingOff and !jumpingOn:
 		#$Sprite.play("idle")
-		isWalking = false
+	#	isWalking = false
 	
 	#if Input.is_action_just_pressed("jump") and !isWalking and !isJumping and isOnTheFloor and !jumpingOff and !jumpingOn:
 	#	position.y = position.y + SIMPLE_JUMP_INPX
@@ -117,12 +123,12 @@ func _physics_process(delta):
 	#if isJumping:
 	#	$Sprite.play("jump")
 		
-	if jumpingOff:
-		var distanceX = Vector2(previousRopeCollider.position.x, 0).distance_to(Vector2(position.x, 0))
-		if not distanceX > DISTANCE_OF_THE_JUMP_OFF:
-			velocity.x += jumpTo
-		if $JumpTimer.is_stopped():
-			$JumpTimer.start()
+	#if jumpingOff:
+	#	var distanceX = Vector2(previousRopeCollider.position.x, 0).distance_to(Vector2(position.x, 0))
+	#	if not distanceX > DISTANCE_OF_THE_JUMP_OFF:
+	#		velocity.x += jumpTo
+	#	if $JumpTimer.is_stopped():
+	#		$JumpTimer.start()
 	
 	if jumpingOn:
 		startJumpingOn(jumpingOnCollider)
@@ -130,16 +136,24 @@ func _physics_process(delta):
 	#move(delta, velocity)
 	
 func _get_input():
-	#potentialMoves["jumping"] = false
-	#potentialMoves["climbing"] = false
 	velocity = Vector2.ZERO
-	if Input.is_action_pressed("left") and !Input.is_action_pressed("right") and !Input.is_action_just_pressed("left"):
+	if Input.is_action_pressed("left") and !Input.is_action_pressed("right") and !Input.is_action_just_pressed("left") and not [fredStateMachine.states.climb, fredStateMachine.states.jump, fredStateMachine.states.flip_right, fredStateMachine.states.flip_left, fredStateMachine.states.jump_off_left, fredStateMachine.states.jump_off_right].has(_get_state()):
 		velocity.x -= 1
-	elif Input.is_action_pressed("right") and !Input.is_action_pressed("left") and !Input.is_action_just_pressed("right"):
+	elif Input.is_action_pressed("left") and !Input.is_action_pressed("right") and !Input.is_action_just_pressed("left") and [fredStateMachine.states.climb].has(_get_state()):
+		if not $Sprite.flip_h and flipTimer.is_stopped() and not shouldStopJumpingOff(tileMapCastLeft1) and not shouldStopJumpingOff(tileMapCastLeft2):
+			fredStateMachine.set_state(fredStateMachine.states.jump_off_left)
+		else:
+			fredStateMachine.set_state(fredStateMachine.states.flip_left)
+	elif Input.is_action_pressed("right") and !Input.is_action_pressed("left") and !Input.is_action_just_pressed("right") and not [fredStateMachine.states.climb, fredStateMachine.states.jump, fredStateMachine.states.flip_right, fredStateMachine.states.flip_left, fredStateMachine.states.jump_off_right, fredStateMachine.states.jump_off_left].has(_get_state()):
 		velocity.x += 1
-	elif Input.is_action_pressed("up"):
+	elif Input.is_action_pressed("right") and !Input.is_action_pressed("left") and !Input.is_action_just_pressed("right") and [fredStateMachine.states.climb].has(_get_state()):
+		if $Sprite.flip_h and flipTimer.is_stopped() and not shouldStopJumpingOff(tileMapCastRight1) and not shouldStopJumpingOff(tileMapCastRight2):
+			fredStateMachine.set_state(fredStateMachine.states.jump_off_right)
+		else:
+			fredStateMachine.set_state(fredStateMachine.states.flip_right)
+	elif Input.is_action_pressed("up") and !Input.is_action_pressed("right") and !Input.is_action_pressed("left") and !Input.is_action_just_pressed("down") and not [fredStateMachine.states.walk, fredStateMachine.states.jump].has(_get_state()):
 		velocity.y -= 1
-	elif Input.is_action_pressed("down") and !shouldStopGoingDown():
+	elif Input.is_action_pressed("down") and !shouldStopGoingDown() and !Input.is_action_pressed("right") and !Input.is_action_pressed("left") and !Input.is_action_just_pressed("up") and not [fredStateMachine.states.walk, fredStateMachine.states.jump].has(_get_state()):
 		velocity.y += 1
 	elif Input.is_action_just_pressed("jump") and !isNearLineVicinity():
 		potentialMoves["jumping"] = true
@@ -179,12 +193,12 @@ func shouldStopGoingDown():
 func _on_JumpTimer_timeout():
 	$JumpTimer.stop()
 	#isJumping = false
-	if jumpingOff:
-		climbing = false
-		jumpingOff = false
-		jumpTo = 0
-		$Sprite.play("idle")
-		position.y = position.y - SIMPLE_JUMP_INPX
+	#if jumpingOff:
+	#	climbing = false
+	#	jumpingOff = false
+	#	jumpTo = 0
+	#	$Sprite.play("idle")
+	#	position.y = position.y - SIMPLE_JUMP_INPX
 	if jumpingOn:
 		jumpTo = 0
 		climbing = false
@@ -193,8 +207,8 @@ func _on_JumpTimer_timeout():
 		climbing = true
 		position.x = jumpingOnCollider.position.x + 1
 		jumpingOnCollider = null
-	if climbing:
-		$Sprite.play("climb")
+	#if climbing:
+	#	$Sprite.play("climb")
 	#else:
 	#	position.y = position.y - SIMPLE_JUMP_INPX
 
@@ -222,7 +236,7 @@ func calculateCorrectedVerticalPosition():
 
 func _on_FlipTimer_timeout():
 	$FlipTimer.stop()
-	flipping = false
+	#flipping = false
 	
 func setRopeCollider(ropeCollider):
 	currentRopeCollider = ropeCollider
@@ -240,3 +254,5 @@ func shouldStartJumpingOn(tileMapCast):
 		return tileMapCast.is_colliding() and not rope.isBottom
 	return false
 
+func _get_state():
+	return fredStateMachine.state

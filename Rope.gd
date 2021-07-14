@@ -19,6 +19,6 @@ func _on_Rope_body_exited(body):
 		ghost.setRopeCollider(null)
 		ghost = null
 	elif body is KinematicBody2D:
-		if not fred.isClimbing():
+		if not [fred.fredStateMachine.states.climb].has(fred._get_state()):
 			fred.setRopeCollider(null)
 			fred = null
