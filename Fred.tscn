@@ -52,28 +52,28 @@ collide_with_bodies = false
 position = Vector2( -10, -10 )
 enabled = true
 cast_to = Vector2( -15, 0 )
-collision_mask = 16
+collision_mask = 28
 collide_with_areas = true
 
 [node name="TileMapCastRight" type="RayCast2D" parent="."]
 position = Vector2( 10, -10 )
 enabled = true
 cast_to = Vector2( 15, 0 )
-collision_mask = 16
+collision_mask = 28
 collide_with_areas = true
 
 [node name="TileMapCastLeft2" type="RayCast2D" parent="."]
 position = Vector2( -10, 10 )
 enabled = true
 cast_to = Vector2( -15, 0 )
-collision_mask = 16
+collision_mask = 28
 collide_with_areas = true
 
 [node name="TileMapCastRight2" type="RayCast2D" parent="."]
 position = Vector2( 10, 10 )
 enabled = true
 cast_to = Vector2( 15, 0 )
-collision_mask = 16
+collision_mask = 28
 collide_with_areas = true
 
 [connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
