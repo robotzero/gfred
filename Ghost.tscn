@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://textures/nonfamiliars/ghost/ghost_sheet.png" type="Texture" id=1]
 [ext_resource path="res://Ghost.gd" type="Script" id=2]
+[ext_resource path="res://GhostStateMachine.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 10.5628
@@ -43,3 +44,6 @@ frame = 1
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="GhostStateMachine" type="Node" parent="."]
+script = ExtResource( 3 )
