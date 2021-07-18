@@ -26,7 +26,6 @@ __meta__ = {
 
 [node name="InternalPyramid" parent="." instance=ExtResource( 6 )]
 position = Vector2( 0, -1 )
-script = null
 
 [node name="Ghost" parent="." instance=ExtResource( 5 )]
 position = Vector2( 181.106, 547 )

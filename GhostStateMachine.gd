@@ -1,7 +1,8 @@
 extends StateMachine
 
 var random: RandomNumberGenerator
-
+var possibilities = []
+# 1 - LEFT 2 - RIGHT 3 - UP 4 - DOWN 5 - LEFT WALL 6 - RIGHT WALL 7 - UP WALL 8 - DOWN WALL
 func _ready():
 	random = RandomNumberGenerator.new()
 	add_state("idle")
@@ -16,17 +17,26 @@ func _state_logic(delta):
 	#parent._get_input()
 	parent._move(delta)
 
-func _get_transition(delta):
-	randomize()
+func _get_transition(_delta):
+	possibilities.clear()
 	match state:
-		states.walk:	
-			if parent.collision and parent.collision.normal.x != 0:
-				print(parent.collision.collider)
+		states.walk:
 			if parent.collision and parent.collision.normal.x != 0 and parent.collision.collider is TileMap:
-				if parent.velocity.x < 0:
+				if parent.collision.normal.x == 1:
+					if parent.collision.collider is InternalPyramid:
+						possibilities.append(7)
+					else:
+						possibilities.append(3)
 					parent.velocity.x = 1
-				if parent.velocity.x > 0:
+				if parent.collision.normal.x == -1:
+					if parent.collision.collider is InternalPyramid:
+						possibilities.append(6)
+					else:
+						possibilities.append(1)
 					parent.velocity.x = -1
+			if parent.fl == parent.floorType.BOTTOM_INTERNAL:
+					possibilities.append(8)
+			print(possibilities)
 	match state:
 		states.walk_through_wall:
 			if parent.collision and parent.collision.normal.x > 0:
@@ -45,3 +55,12 @@ func _enter_state(new_state, old_state):
 			parent.sprite.play("walk")
 		states.walk_through_wall:
 			parent.sprite.play("walk")
+
+func _exit_state(old_state, new_state):
+	match new_state:
+		states.walk:
+			if old_state == states.walk_through_wall:
+				pass
+
+func _calculate_possibility():
+	randomize()

@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Ghost.gd"
 }, {
+"base": "TileMap",
+"class": "InternalPyramid",
+"language": "GDScript",
+"path": "res://InternalPyramid.gd"
+}, {
 "base": "Area2D",
 "class": "Rope",
 "language": "GDScript",
@@ -38,6 +43,7 @@ _global_script_class_icons={
 "ExternalPyramid": "",
 "Fred": "",
 "Ghost": "",
+"InternalPyramid": "",
 "Rope": "",
 "StateMachine": ""
 }
