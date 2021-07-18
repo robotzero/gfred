@@ -2,7 +2,7 @@ extends KinematicBody2D
 class_name Ghost
 
 const SPEED:int = 250
-var velocity: Vector2 = Vector2(1, 0)
+var velocity: Vector2 = Vector2.RIGHT
 var ropeCollider = null
 var isClimbing:bool = false
 var random: RandomNumberGenerator = RandomNumberGenerator.new()

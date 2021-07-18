@@ -11,6 +11,7 @@ func _ready():
 	add_state("jump_on_left")
 	add_state("jump_off_right")
 	add_state("jump_off_left")
+	add_state("start_climb")
 	call_deferred("set_state", states.idle)
 
 func _state_logic(delta):
@@ -23,7 +24,11 @@ func _state_logic(delta):
 			var distanceX = Vector2(parent.previousRopeCollider.position.x, 0).distance_to(Vector2(parent.position.x, 0))
 			if not distanceX > parent.DISTANCE_OF_THE_JUMP_OFF:
 				parent.velocity.x += parent.jumpTo
-	if [states.jump_off_left, states.jump_off_right, states.jump_on_left, states.jump_on_right, states.flip_right, states.flip_left].has(state):
+		states.jump_on_left:
+			parent.startJumpingOn(parent.tileMapCastLeft1.get_collider())
+		states.jump_on_right:
+			parent.startJumpingOn(parent.tileMapCastRight1.get_collider())
+	if [states.jump, states.jump_off_left, states.jump_off_right, states.jump_on_left, states.jump_on_right, states.flip_right, states.flip_left, states.start_climb].has(state):
 		parent._move(delta)
 	else:
 		parent._get_input()
@@ -34,22 +39,18 @@ func _get_transition(delta):
 		states.idle:
 			if parent.velocity.x != 0:
 				return states.walk
-			if parent.potentialMoves["jumping"]:
-				return states.jump
-			if parent.potentialMoves["climbing"]:
-				return states.jump
 		states.walk:
 			if parent.velocity.x == 0:
 				return states.idle
 			if parent.shouldStartJumpingOn(parent.tileMapCastLeft1) and parent.shouldStartJumpingOn(parent.tileMapCastLeft2):
-				if parent.velocity.x < 0:
-					return states.jump_on_left
-				if parent.velocity.x > 0:
-					return states.jump_on_right
+				return states.jump_on_left
+			if parent.shouldStartJumpingOn(parent.tileMapCastRight1) and parent.shouldStartJumpingOn(parent.tileMapCastRight2):
+				return states.jump_on_right
 		states.jump:
-			if parent.jumpTimer.is_stopped() and parent.potentialMoves["jumping"]:
+			if parent.jumpTimer.is_stopped():
 				return states.idle
-			if parent.jumpTimer.is_stopped() and parent.potentialMoves["climbing"]:
+		states.start_climb:
+			if parent.jumpTimer.is_stopped():
 				return states.climb
 		states.flip_right:
 			if parent.flipTimer.is_stopped():
@@ -90,6 +91,10 @@ func _enter_state(new_state, old_state):
 			parent.sprite.play("jump")
 			parent.position.y = parent.position.y + parent.SIMPLE_JUMP_INPX
 			parent.jumpTimer.start()
+		states.start_climb:
+			parent.sprite.play("jump")
+			parent.position.y = parent.position.y + parent.SIMPLE_JUMP_INPX
+			parent.jumpTimer.start()
 		states.climb:
 			parent.sprite.play("climb")
 		states.flip_right:
@@ -126,11 +131,15 @@ func _enter_state(new_state, old_state):
 			if parent.jumpTimer.is_stopped():
 				parent.jumpTimer.start()
 		states.jump_on_right:
+			if parent.jumpTimer.is_stopped():
+				parent.jumpTimer.start()
 			parent.jumpTo = 1
 			parent.sprite.play("jump")
 			parent.jumpingOnCollider = parent.tileMapCastRight1.get_collider()
 			parent.startJumpingOn(parent.tileMapCastRight1.get_collider())
 		states.jump_on_left:
+			if parent.jumpTimer.is_stopped():
+				parent.jumpTimer.start()
 			parent.jumpTo = -1
 			parent.sprite.play("jump")
 			parent.jumpingOnCollider = parent.tileMapCastLeft1.get_collider()
@@ -143,15 +152,12 @@ func _exit_state(old_state, new_state):
 				parent.jumpTo = 0
 				parent.sprite.play("idle")
 				parent.position.y = parent.position.y - parent.SIMPLE_JUMP_INPX
-			parent.potentialMoves["jumping"] = false
 		states.climb:
 			if old_state == states.jump_on_right or old_state == states.jump_on_left:
 				parent.jumpTo = 0
 				parent.sprite.play("climb")
 				parent.position.x = parent.jumpingOnCollider.position.x + 1
 				parent.jumpingOnCollider = null
-			parent.potentialMoves["climbing"] = false
-		states.jump:
-			if parent.potentialMoves["climbing"]:
-				var newPosX = parent.calculateCorrectedVerticalPosition()
-				parent.position.x = newPosX
+		states.start_climb:
+			var newPosX = parent.calculateCorrectedVerticalPosition()
+			parent.position.x = newPosX

@@ -28,7 +28,7 @@ func _ready():
 					ch.set_texture(bottomTexture)
 			currentNodeBottom.isBottom = true
 		
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("cameraDebug"):
 		if $Fred.get_node("FredCamera").current:
 			$DebugCamera.current = true

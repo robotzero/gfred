@@ -6,30 +6,18 @@ const STONE_HEIGHT:int = 40
 const DISTANCE_TO_FLOOR_WHEN_CLIMBING:int = 22
 const DISTANCE_OF_THE_JUMP_OFF:int = 28
 const DISTANCE_OF_THE_JUMP_ON:int = 1
-const VELOCITY_JUMP_ON:float = 0.195
+const VELOCITY_JUMP_ON:float = 0.600
 const SPEED:int = 50
 const GRAVITY:int = 0
 const SIMPLE_JUMP_INPX:int = -int(STONE_HEIGHT * 0.185)
 const CLIMB_COLLIDE_APRON:int = 5
-var isJumping:bool = false
 var isOnTheFloor:bool = true
-var isWalking:bool = true
-var climbing:bool = false
 var currentRopeCollider:Rope = null
 var previousRopeCollider:Rope = null
 var jumpingOnCollider:Rope = null
-var jumpingOff:bool = false
-var flipping:bool = false
-var jumpingOn:bool = false
 var jumpTo:int = 0
-var potentialMoves = {
-	"jumping":false,
-	"climbing":false
-}
 
 onready var fredRaycast:RayCast2D = $FloorCast
-onready var lineCastLeft:RayCast2D = $LineCastLeft
-onready var lineCastRight:RayCast2D = $LineCastRight
 onready var tileMapCastLeft1:RayCast2D = $TileMapCastLeft
 onready var tileMapCastRight1:RayCast2D = $TileMapCastRight
 onready var tileMapCastLeft2:RayCast2D = $TileMapCastLeft2
@@ -60,9 +48,9 @@ func _get_input():
 	elif Input.is_action_pressed("down") and !shouldStopGoingDown() and !Input.is_action_pressed("right") and !Input.is_action_pressed("left") and !Input.is_action_just_pressed("up") and not [fredStateMachine.states.walk, fredStateMachine.states.jump].has(_get_state()):
 		velocity.y += 1
 	elif Input.is_action_just_pressed("jump") and !isNearLineVicinity():
-		potentialMoves["jumping"] = true
+		fredStateMachine.set_state(fredStateMachine.states.jump)
 	elif Input.is_action_just_pressed("jump") and isNearLineVicinity():
-		potentialMoves["climbing"] = true
+		fredStateMachine.set_state(fredStateMachine.states.start_climb)
 
 func _move(delta):
 	velocity = velocity.normalized() * SPEED
@@ -70,14 +58,12 @@ func _move(delta):
 	isOnTheFloor = is_on_floor_custom(collision)
 	
 func startJumpingOn(rope):
-	var distanceX = Vector2(rope.position.x, 0).distance_to(Vector2(position.x, 0))
-	if distanceX > DISTANCE_OF_THE_JUMP_ON:
-		velocity.x += jumpTo
-		velocity.y -= VELOCITY_JUMP_ON
-	if $JumpTimer.is_stopped():
-		$JumpTimer.start()
+	if rope != null:
+		var distanceX = Vector2(rope.position.x, 0).distance_to(Vector2(position.x, 0))
+		if distanceX > DISTANCE_OF_THE_JUMP_ON:
+			velocity.x += jumpTo
+			velocity.y -= VELOCITY_JUMP_ON
 
-		
 func is_on_floor_custom(var collision):
 	if collision != null and collision.normal.x == 0 and collision.normal.y == -1 and collision.collider is TileMap:
 		return true
@@ -99,17 +85,6 @@ func _on_JumpTimer_timeout():
 func isNearLineVicinity():
 	if currentRopeCollider:
 		return true
-	if $Sprite.flip_h and lineCastLeft.is_colliding() and lineCastLeft.get_collision_normal().x == 1:
-		currentRopeCollider = lineCastLeft.get_collider()
-		return true
-	elif $Sprite.flip_h == false and lineCastRight.is_colliding() and lineCastRight.get_collision_normal().x == -1:
-		currentRopeCollider = lineCastRight.get_collider()
-		return true
-	if currentRopeCollider == null:
-		return false
-	if currentRopeCollider:
-		return true
-	currentRopeCollider = null
 	return false
 
 func calculateCorrectedVerticalPosition():

@@ -4,6 +4,7 @@ class_name Rope
 var fred = null
 var ghost:Ghost = null
 var isBottom: bool = false
+var blah:ExternalPyramid = null
 
 func _on_Rope_body_entered(body):
 	if body is Ghost:
