@@ -161,9 +161,6 @@ position = Vector2( 303.627, 58.8426 )
 [node name="Top7" parent="." instance=ExtResource( 3 )]
 position = Vector2( 46.5836, 59.562 )
 
-[node name="Top9" parent="." instance=ExtResource( 3 )]
-position = Vector2( 464.126, 139.522 )
-
 [node name="Top11" parent="." instance=ExtResource( 3 )]
 position = Vector2( 590.966, 218.902 )
 
@@ -218,7 +215,7 @@ position = Vector2( 334.534, 260.08 )
 [node name="Rope19" parent="." instance=ExtResource( 3 )]
 position = Vector2( 464.126, 259.08 )
 
-[node name="Rope18" parent="." instance=ExtResource( 3 )]
+[node name="Top25" parent="." instance=ExtResource( 3 )]
 position = Vector2( 464.126, 219.809 )
 
 [node name="Rope21" parent="." instance=ExtResource( 3 )]
@@ -328,9 +325,6 @@ position = Vector2( 174.264, 178.997 )
 
 [node name="Rope16" parent="." instance=ExtResource( 3 )]
 position = Vector2( 303.627, 98.7406 )
-
-[node name="Rope17" parent="." instance=ExtResource( 3 )]
-position = Vector2( 464.126, 179.997 )
 
 [node name="Rope20" parent="." instance=ExtResource( 3 )]
 position = Vector2( 527.748, 178.997 )

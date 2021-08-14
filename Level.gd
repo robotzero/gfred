@@ -10,7 +10,7 @@ func _ready():
 			var ch := child as Sprite
 			ch.set_texture(endTexture)
 			
-	for n in range (1, 25):
+	for n in range (1, 26):
 		var nameTop = "Top%d" % n
 		var nameBottom = "Bottom%d" % n
 		var currentNodeTop = get_node(nameTop)

@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name Ghost
 
-const SPEED:int = 250
+const SPEED:int = 50
 var velocity: Vector2 = Vector2.RIGHT
 var collision = null
 var ropeCollider = null
