@@ -38,20 +38,6 @@ func _ready():
 	call_deferred("set_state", states.walk_right)
 	
 func _state_logic(delta):
-	if !possibilities.empty():
-		pass
-		#print(possibilities)
-	#var choosen_index = _calculate_possibility()
-	#print(choosen_index)
-	#if choosen_index:
-#		possibilities_map.get(choosen_index)
-	#if !possibilities.empty():
-	#	var move = random.randi_range(1, 8)
-		#parent.velocity = possibilities_map.get(move)
-		#print(parent.velocity)
-	#match state:
-	#	parent.startJumpingOn(parent.tileMapCastRight1.get_collider())
-	#parent._get_input()
 	parent._move(delta)
 
 func _get_transition(_delta):
@@ -61,6 +47,7 @@ func _get_transition(_delta):
 			if parent.collision and parent.collision.normal.x != 0 and parent.collision.collider is TileMap:
 				if parent.collision.normal.x == 1:
 					if parent.collision.collider is InternalPyramid:
+						#@TODO this should be a check for raycasting
 						possibilities.append(7)
 					else:
 						possibilities.append(3)
@@ -75,6 +62,26 @@ func _get_transition(_delta):
 				possibilities.append(8)
 			if parent.ropeCollider and _ghost_rope_distance():
 				possibilities.append(3)
+			if !parent.collision:
+				if state == states.walk_left:
+					possibilities.append(1)
+				if state == states.walk_right:
+					possibilities.append(2)
+		
+		states.climb_up:
+			#if parent.topFloor.is_colliding() and parent.topFloor.get_collider() is TileMap:
+			if parent.collision and parent.collision.normal.y != 0 and parent.collision.collider is TileMap:
+				if parent.collision.normal.y == 1:
+					if parent.collision.collider is InternalPyramid:
+						possibilities.append(7)
+				
+				possibilities = parent.checkCollider(parent.leftCast, 5, possibilities)
+				possibilities = parent.checkCollider(parent.rightCast, 6, possibilities)
+				possibilities.append(4)
+				if !parent.leftCast.is_colliding():
+					possibilities.append(1)
+				if !parent.rightCast.is_colliding():
+					possibilities.append(2)
 		states.walk_through_wall_left:
 			if parent.collision and parent.collision.normal.x > 0:
 				pass
@@ -82,6 +89,7 @@ func _get_transition(_delta):
 			return states.walk_left
 	var choosen_index = _calculate_possibility()
 	if choosen_index:
+		print(choosen_index)
 		return states[possibilities_state_map.get(choosen_index)]
 	return null
 			
@@ -122,6 +130,7 @@ func _ghost_rope_distance():
 func _calculate_possibility():
 	if !possibilities.empty():
 		randomize()
-		var move = random.randi_range(0, possibilities.size() - 1)
-		return possibilities[move]
+		possibilities.shuffle()
+		var move = possibilities[randi() % possibilities.size()]
+		return move
 	return null
