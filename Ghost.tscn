@@ -5,7 +5,7 @@
 [ext_resource path="res://GhostStateMachine.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
-height = 16.6764
+height = 18.4222
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
@@ -32,7 +32,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -3 )
+position = Vector2( 0, -4 )
 shape = SubResource( 1 )
 __meta__ = {
 "_edit_group_": true
