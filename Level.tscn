@@ -15,8 +15,10 @@ offset = Vector2( 512, 300 )
 zoom = Vector2( 1.5, 1.5 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_left = -0.333679
+margin_top = -0.471924
+margin_right = 1023.67
+margin_bottom = 599.528
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -28,10 +30,10 @@ __meta__ = {
 position = Vector2( 0, -1 )
 
 [node name="Ghost" parent="." instance=ExtResource( 5 )]
-position = Vector2( 181.106, 547 )
+position = Vector2( 150, 545 )
 
 [node name="Fred" parent="." instance=ExtResource( 2 )]
-position = Vector2( 302.723, 546 )
+position = Vector2( 250, 544 )
 
 [node name="FredCamera" type="Camera2D" parent="Fred"]
 current = true

@@ -2,6 +2,16 @@ extends StateMachine
 
 var random: RandomNumberGenerator
 var possibilities = []
+var ghost_wall_collision = null
+onready var ghostWalkLeft = $GhostWalkLeftHandler
+onready var ghostWalkRight = $GhostWalkRightHandler
+onready var ghostWalkWallRight = $GhostWalkWallRightHandler
+onready var ghostWalkWallLeft = $GhostWalkWallLeftHandler
+onready var ghostWalkDown = $GhostWalkDownHandler
+onready var ghostWalkUp = $GhostWalkUpHandler
+onready var ghostWalkWallDown = $GhostWalkWallDownHandler
+onready var ghostWalkWallUp = $GhostWalkWallUpHandler
+
 const possibilities_maps = {
 	1:Vector2.LEFT,
 	2:Vector2.RIGHT,
@@ -35,7 +45,8 @@ func _ready():
 	add_state("walk_through_wall_right")
 	add_state("climb_through_wall_up")
 	add_state("climb_through_wall_down")
-	call_deferred("set_state", states.walk_right)
+	call_deferred("set_state", states.walk_left)
+	
 	
 func _state_logic(delta):
 	parent._move(delta)
@@ -44,77 +55,30 @@ func _get_transition(_delta):
 	# 1 - LEFT 2 - RIGHT 3 - UP 4 - DOWN 5 - LEFT WALL 6 - RIGHT WALL 7 - UP WALL 8 - DOWN WALL
 	possibilities.clear()
 	match state:
-		states.walk_left, states.walk_right:
-			if parent.collision and parent.collision.normal.x != 0 and parent.collision.collider is TileMap:
-				if parent.collision.normal.x == 1:
-					if parent.collision.collider is InternalPyramid:
-						#@TODO this should be a check for raycasting
-						possibilities.append(7)
-					else:
-						possibilities.append(3)
-				if parent.collision.normal.x == -1:
-					if parent.collision.collider is InternalPyramid:
-						possibilities.append(6)
-					else:
-						possibilities.append(1)
-			if parent.fl == parent.floorType.BOTTOM_INTERNAL:
-				possibilities.append(8)
-			if parent.ropeCollider and _ghost_rope_distance():
-				possibilities.append(3)
-			if !parent.collision or parent.collision.normal.x == 0:
-				if state == states.walk_left:
-					possibilities.append(1)
-				if state == states.walk_right:
-					possibilities.append(2)
-		
+		states.walk_left:
+			ghostWalkLeft.handle()
+		states.walk_right:
+			ghostWalkRight.handle()
 		states.walk_through_wall_left:
-			pass
-		
+			ghostWalkWallLeft.handle()
 		states.walk_through_wall_right:
-			pass
-		
+			ghostWalkWallRight.handle()
+		states.climb_through_wall_up:
+			ghostWalkWallUp.handle()
+		states.climb_through_wall_down:
+			ghostWalkWallDown.handle()
 		states.climb_up:
-			if parent.collision and parent.collision.normal.y != 0 and parent.collision.collider is TileMap:
-				if parent.collision.normal.y == 1:
-					if parent.collision.collider is InternalPyramid:
-						possibilities.append(7)
-				
-				possibilities = parent.checkCollider(parent.leftCast, 5, possibilities)
-				possibilities = parent.checkCollider(parent.rightCast, 6, possibilities)
-				possibilities.append(4)
-				if !parent.leftCast.is_colliding():
-					possibilities.append(1)
-				if !parent.rightCast.is_colliding():
-					possibilities.append(2)
-					
+			ghostWalkUp.handle()
 		states.climb_down:
-			if parent.collision and parent.collision.normal.y < 0 and parent.collision.collider is TileMap:
-				if parent.collision.collider is InternalPyramid:
-					possibilities.append(8)
-				possibilities = parent.checkCollider(parent.leftCast, 5, possibilities)
-				possibilities = parent.checkCollider(parent.rightCast, 6, possibilities)
-				possibilities.append(3)
-				if !parent.leftCast.is_colliding():
-					possibilities.append(1)
-				if !parent.rightCast.is_colliding():
-					possibilities.append(2)
-		
-		
-		states.walk_through_wall_left:
-			if parent.collision and parent.collision.normal.x > 0:
-				pass
-			#TODO discover that you no longer "in" the wall to switch the state
-			#return states.walk_left
+			ghostWalkDown.handle()
+					
 	var choosen_index = _calculate_possibility()
 	if choosen_index:
-		print(choosen_index)
 		return states[possibilities_state_map.get(choosen_index)]
 	return null
 			
 func _enter_state(new_state, old_state):
 	match new_state:
-		states.walk_through_wall_left, states.walk_through_wall_right:
-			parent.sprite.play("walk")
 		states.climb_up:
 			parent.sprite.play("walk")
 			parent.velocity = Vector2.UP
@@ -133,25 +97,47 @@ func _enter_state(new_state, old_state):
 			parent.velocity = Vector2.RIGHT
 		states.walk_through_wall_left:
 			parent.sprite.play("walk")
-			parent.velocity = Vector2.LEFT
 			parent.set_collision_mask_bit(2, false)
+			ghost_wall_collision = parent.collision;
+			parent.velocity = Vector2.LEFT
 		states.walk_through_wall_right:
 			parent.sprite.play("walk")
-			parent.velocity = Vector2.RIGHT
 			parent.set_collision_mask_bit(2, false)
+			ghost_wall_collision = parent.collision;
+			parent.velocity = Vector2.RIGHT
+		states.climb_through_wall_up:
+			if parent.collision != null:
+				ghost_wall_collision = parent.collision;
+			parent.sprite.play("walk")
+			parent.set_collision_mask_bit(2, false)
+			parent.velocity = Vector2.UP
+		states.climb_through_wall_down:
+			if parent.collision != null:
+				ghost_wall_collision = parent.collision;
+			parent.sprite.play("walk")
+			parent.set_collision_mask_bit(2, false)
+			parent.velocity = Vector2.DOWN
 
 func _exit_state(old_state, new_state):
 	match new_state:
 		states.walk_right, states.walk_left:
 			if old_state == states.walk_through_wall_left:
-				pass
+				ghost_wall_collision = null
+				parent.set_collision_mask_bit(2, true)
 			if old_state == states.walk_through_wall_right:
-				pass
+				ghost_wall_collision = null
+				parent.set_collision_mask_bit(2, true)
+			if old_state == states.climb_through_wall_up:
+				ghost_wall_collision = null
+				parent.set_collision_mask_bit(2, true)
+			if old_state == states.climb_through_wall_down:
+				ghost_wall_collision = null
+				parent.set_collision_mask_bit(2, true)
 
 func _ghost_rope_distance():
 	var distance = Vector2(parent.ropeCollider.position.x, 0).distance_to(Vector2(parent.position.x, 0))
 	#TODO potential issues with distance, when ghost is hitting wall, make sure that it is possible to have both
-	if distance < 3:
+	if distance < 1:
 		return true
 	return false
 
@@ -160,5 +146,7 @@ func _calculate_possibility():
 		randomize()
 		possibilities.shuffle()
 		var move = possibilities[randi() % possibilities.size()]
+		#if possibilities.has(7):
+		#	return 7
 		return move
 	return null

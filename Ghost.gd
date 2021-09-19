@@ -2,7 +2,7 @@ extends KinematicBody2D
 class_name Ghost
 
 const SPEED:int = 50
-var velocity: Vector2 = Vector2.RIGHT
+var velocity: Vector2 = Vector2.ZERO
 var collision = null
 var ropeCollider = null
 enum floorType {BOTTOM_INTERNAL, BOTTOM_EXTERNAL}
@@ -39,8 +39,6 @@ func setRopeCollider(rope):
 		
 func isAboutToCollide(var possibilities, var state):
 	# 1 - LEFT 2 - RIGHT 3 - UP 4 - DOWN 5 - LEFT WALL 6 - RIGHT WALL 7 - UP WALL 8 - DOWN WALL
-
-	
 	if topFloor.is_colliding() and topFloor.get_collider() is InternalPyramid:
 		possibilities.append(7)
 	#@TODO check the type of the current state because we do not want to go up and then just go down immediately
