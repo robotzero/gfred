@@ -21,6 +21,7 @@ func handle():
 			collision_point = Vector2(0, rayCastUp.get_collision_point().y)
 			saved = true
 		if !printed:
+			print("WALL UP")
 			#print(rayCastUp.get_collision_point())
 			#print(ghost.position.y)
 			printed = true

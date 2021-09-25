@@ -5,7 +5,7 @@ onready var ghostStateMachine = get_parent()
 onready var ghost: Ghost = get_parent().get_parent()
 
 var printed = false
-var DISTANCE_LEFT = 32 + 14
+var DISTANCE_LEFT = 32 + 14 + 32 + 14 + 14
 var collision_point = Vector2.ZERO
 var saved = false
 
@@ -45,6 +45,4 @@ func handle():
 				possibilities.append(8)
 			else:
 				possibilities.append(4)
-			
-			possibilities.clear()
 

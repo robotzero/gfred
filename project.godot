@@ -150,6 +150,7 @@ cameraDebug={
 2d_physics/layer_3="internaltilemap"
 2d_physics/layer_4="externaltilemap"
 2d_physics/layer_5="rope"
+2d_physics/layer_6="nonfamiliars"
 
 [physics]
 

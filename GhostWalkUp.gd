@@ -49,5 +49,5 @@ func handle():
 		else:
 			possibilities.append(2)
 		
-		possibilities.clear()
+		#possibilities.clear()
 		printed = true
