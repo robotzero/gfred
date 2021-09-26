@@ -336,4 +336,7 @@ position = Vector2( 527.748, 178.997 )
 position = Vector2( 46.5836, 99.863 )
 
 [node name="hedgehog" parent="." instance=ExtResource( 7 )]
-position = Vector2( 50, 556 )
+position = Vector2( 301.071, 475.355 )
+
+[node name="hedgehog2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 38.071, 395.355 )
