@@ -8,7 +8,7 @@
 radius = 13.6914
 height = 5.00989
 
-[node name="Fred" type="KinematicBody2D"]
+[node name="Fred" type="CharacterBody2D"]
 collision_mask = 28
 script = ExtResource( 2 )
 __meta__ = {
@@ -24,7 +24,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="AnimatedSprite" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 frames = ExtResource( 1 )
 animation = "idle"
 __meta__ = {
@@ -41,7 +41,7 @@ one_shot = true
 
 [node name="FloorCast" type="RayCast2D" parent="."]
 enabled = true
-cast_to = Vector2( 0, 25 )
+target_position = Vector2( 0, 25 )
 collision_mask = 12
 __meta__ = {
 "_edit_group_": true
@@ -50,7 +50,7 @@ __meta__ = {
 [node name="TileMapCastLeft" type="RayCast2D" parent="."]
 position = Vector2( -10, -10 )
 enabled = true
-cast_to = Vector2( -15, 0 )
+target_position = Vector2( -15, 0 )
 collision_mask = 28
 collide_with_areas = true
 __meta__ = {
@@ -60,7 +60,7 @@ __meta__ = {
 [node name="TileMapCastRight" type="RayCast2D" parent="."]
 position = Vector2( 10, -10 )
 enabled = true
-cast_to = Vector2( 15, 0 )
+target_position = Vector2( 15, 0 )
 collision_mask = 28
 collide_with_areas = true
 __meta__ = {
@@ -70,7 +70,7 @@ __meta__ = {
 [node name="TileMapCastLeft2" type="RayCast2D" parent="."]
 position = Vector2( -10, 10 )
 enabled = true
-cast_to = Vector2( -15, 0 )
+target_position = Vector2( -15, 0 )
 collision_mask = 28
 collide_with_areas = true
 __meta__ = {
@@ -80,7 +80,7 @@ __meta__ = {
 [node name="TileMapCastRight2" type="RayCast2D" parent="."]
 position = Vector2( 10, 10 )
 enabled = true
-cast_to = Vector2( 15, 0 )
+target_position = Vector2( 15, 0 )
 collision_mask = 28
 collide_with_areas = true
 __meta__ = {

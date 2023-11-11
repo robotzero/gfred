@@ -1,117 +1,97 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=16 format=3 uid="uid://dr4njfr7f8kbj"]
 
-[ext_resource path="res://textures/nonfamiliars/ghost/ghost_sheet.png" type="Texture" id=1]
-[ext_resource path="res://Ghost.gd" type="Script" id=2]
-[ext_resource path="res://GhostStateMachine.gd" type="Script" id=3]
-[ext_resource path="res://GhostWalkLeft.gd" type="Script" id=4]
-[ext_resource path="res://GhostWalkRight.gd" type="Script" id=5]
-[ext_resource path="res://GhostWalkWallRight.gd" type="Script" id=6]
-[ext_resource path="res://GhostWalkWallLeft.gd" type="Script" id=7]
-[ext_resource path="res://GhostWalkUp.gd" type="Script" id=8]
-[ext_resource path="res://GhostWalkDown.gd" type="Script" id=9]
-[ext_resource path="res://GhostWalkWallUp.gd" type="Script" id=10]
-[ext_resource path="res://GhostWalkWallDown.gd" type="Script" id=11]
+[ext_resource type="Texture2D" uid="uid://c5x238dt2mwa6" path="res://textures/nonfamiliars/ghost/ghost_sheet.png" id="1"]
+[ext_resource type="Script" path="res://Ghost.gd" id="2"]
+[ext_resource type="Script" path="res://GhostStateMachine.gd" id="3"]
+[ext_resource type="Script" path="res://GhostWalkLeft.gd" id="4"]
+[ext_resource type="Script" path="res://GhostWalkRight.gd" id="5"]
+[ext_resource type="Script" path="res://GhostWalkWallRight.gd" id="6"]
+[ext_resource type="Script" path="res://GhostWalkWallLeft.gd" id="7"]
+[ext_resource type="Script" path="res://GhostWalkUp.gd" id="8"]
+[ext_resource type="Script" path="res://GhostWalkDown.gd" id="9"]
+[ext_resource type="Script" path="res://GhostWalkWallUp.gd" id="10"]
+[ext_resource type="Script" path="res://GhostWalkWallDown.gd" id="11"]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 14.8255
+[sub_resource type="CapsuleShape2D" id="1"]
+radius = 3.07456
 height = 6.14912
 
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 23, 29 )
+[sub_resource type="AtlasTexture" id="2"]
+atlas = ExtResource("1")
+region = Rect2(0, 0, 23, 29)
 
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 1 )
-region = Rect2( 23, 0, 23, 29 )
+[sub_resource type="AtlasTexture" id="3"]
+atlas = ExtResource("1")
+region = Rect2(23, 0, 23, 29)
 
-[sub_resource type="SpriteFrames" id=4]
-animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ) ],
+[sub_resource type="SpriteFrames" id="4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("2")
+}, {
+"duration": 1.0,
+"texture": SubResource("3")
+}],
 "loop": true,
-"name": "walk",
+"name": &"walk",
 "speed": 5.0
-} ]
+}]
 
-[node name="Ghost" type="KinematicBody2D"]
-position = Vector2( 0, -0.374576 )
+[node name="Ghost" type="CharacterBody2D"]
+position = Vector2(0, -0.374576)
 collision_layer = 2
 collision_mask = 12
-collision/safe_margin = 0.4
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
+script = ExtResource("2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -3 )
-shape = SubResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
+position = Vector2(0, -3)
+shape = SubResource("1")
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 4 )
-animation = "walk"
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("4")
+animation = &"walk"
 frame = 1
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="GhostStateMachine" type="Node" parent="."]
-script = ExtResource( 3 )
+script = ExtResource("3")
 
 [node name="GhostWalkLeftHandler" type="Node" parent="GhostStateMachine"]
-script = ExtResource( 4 )
+script = ExtResource("4")
 
 [node name="GhostWalkRightHandler" type="Node" parent="GhostStateMachine"]
-script = ExtResource( 5 )
+script = ExtResource("5")
 
 [node name="GhostWalkWallRightHandler" type="Node" parent="GhostStateMachine"]
-script = ExtResource( 6 )
+script = ExtResource("6")
 
 [node name="GhostWalkWallLeftHandler" type="Node" parent="GhostStateMachine"]
-script = ExtResource( 7 )
+script = ExtResource("7")
 
 [node name="GhostWalkUpHandler" type="Node" parent="GhostStateMachine"]
-script = ExtResource( 8 )
+script = ExtResource("8")
 
 [node name="GhostWalkDownHandler" type="Node" parent="GhostStateMachine"]
-script = ExtResource( 9 )
+script = ExtResource("9")
 
 [node name="GhostWalkWallUpHandler" type="Node" parent="GhostStateMachine"]
-script = ExtResource( 10 )
+script = ExtResource("10")
 
 [node name="GhostWalkWallDownHandler" type="Node" parent="GhostStateMachine"]
-script = ExtResource( 11 )
+script = ExtResource("11")
 
 [node name="BottomFloorRayCast" type="RayCast2D" parent="."]
-enabled = true
-cast_to = Vector2( 0, 20 )
+target_position = Vector2(0, 20)
 collision_mask = 12
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="UpFloorRayCast" type="RayCast2D" parent="."]
-enabled = true
-cast_to = Vector2( 0, -28 )
+target_position = Vector2(0, -28)
 collision_mask = 12
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="RightRayCast" type="RayCast2D" parent="."]
-enabled = true
-cast_to = Vector2( 25, 0 )
+target_position = Vector2(25, 0)
 collision_mask = 12
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="LeftRayCast" type="RayCast2D" parent="."]
-enabled = true
-cast_to = Vector2( -25, 0 )
+target_position = Vector2(-25, 0)
 collision_mask = 12
-__meta__ = {
-"_edit_group_": true
-}

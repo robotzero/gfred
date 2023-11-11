@@ -1,8 +1,8 @@
 extends Node
 class_name GhostWalkWallLeft
 
-onready var ghostStateMachine = get_parent()
-onready var ghost: Ghost = get_parent().get_parent()
+@onready var ghostStateMachine = get_parent()
+@onready var ghost: Ghost = get_parent().get_parent()
 
 var printed = false
 var DISTANCE_LEFT = 32 + 14

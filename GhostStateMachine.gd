@@ -3,14 +3,14 @@ extends StateMachine
 var random: RandomNumberGenerator
 var possibilities = []
 var ghost_wall_collision = null
-onready var ghostWalkLeft = $GhostWalkLeftHandler
-onready var ghostWalkRight = $GhostWalkRightHandler
-onready var ghostWalkWallRight = $GhostWalkWallRightHandler
-onready var ghostWalkWallLeft = $GhostWalkWallLeftHandler
-onready var ghostWalkDown = $GhostWalkDownHandler
-onready var ghostWalkUp = $GhostWalkUpHandler
-onready var ghostWalkWallDown = $GhostWalkWallDownHandler
-onready var ghostWalkWallUp = $GhostWalkWallUpHandler
+@onready var ghostWalkLeft = $GhostWalkLeftHandler
+@onready var ghostWalkRight = $GhostWalkRightHandler
+@onready var ghostWalkWallRight = $GhostWalkWallRightHandler
+@onready var ghostWalkWallLeft = $GhostWalkWallLeftHandler
+@onready var ghostWalkDown = $GhostWalkDownHandler
+@onready var ghostWalkUp = $GhostWalkUpHandler
+@onready var ghostWalkWallDown = $GhostWalkWallDownHandler
+@onready var ghostWalkWallUp = $GhostWalkWallUpHandler
 
 const possibilities_maps = {
 	1:Vector2.LEFT,
@@ -97,25 +97,25 @@ func _enter_state(new_state, old_state):
 			parent.velocity = Vector2.RIGHT
 		states.walk_through_wall_left:
 			parent.sprite.play("walk")
-			parent.set_collision_mask_bit(2, false)
+			parent.set_collision_mask_value(2, false)
 			ghost_wall_collision = parent.collision;
 			parent.velocity = Vector2.LEFT
 		states.walk_through_wall_right:
 			parent.sprite.play("walk")
-			parent.set_collision_mask_bit(2, false)
+			parent.set_collision_mask_value(2, false)
 			ghost_wall_collision = parent.collision;
 			parent.velocity = Vector2.RIGHT
 		states.climb_through_wall_up:
 			if parent.collision != null:
 				ghost_wall_collision = parent.collision;
 			parent.sprite.play("walk")
-			parent.set_collision_mask_bit(2, false)
+			parent.set_collision_mask_value(2, false)
 			parent.velocity = Vector2.UP
 		states.climb_through_wall_down:
 			if parent.collision != null:
 				ghost_wall_collision = parent.collision;
 			parent.sprite.play("walk")
-			parent.set_collision_mask_bit(2, false)
+			parent.set_collision_mask_value(2, false)
 			parent.velocity = Vector2.DOWN
 
 func _exit_state(old_state, new_state):
@@ -123,16 +123,16 @@ func _exit_state(old_state, new_state):
 		states.walk_right, states.walk_left:
 			if old_state == states.walk_through_wall_left:
 				ghost_wall_collision = null
-				parent.set_collision_mask_bit(2, true)
+				parent.set_collision_mask_value(2, true)
 			if old_state == states.walk_through_wall_right:
 				ghost_wall_collision = null
-				parent.set_collision_mask_bit(2, true)
+				parent.set_collision_mask_value(2, true)
 			if old_state == states.climb_through_wall_up:
 				ghost_wall_collision = null
-				parent.set_collision_mask_bit(2, true)
+				parent.set_collision_mask_value(2, true)
 			if old_state == states.climb_through_wall_down:
 				ghost_wall_collision = null
-				parent.set_collision_mask_bit(2, true)
+				parent.set_collision_mask_value(2, true)
 
 func _ghost_rope_distance():
 	var distance = Vector2(parent.ropeCollider.position.x, 0).distance_to(Vector2(parent.position.x, 0))
@@ -142,7 +142,7 @@ func _ghost_rope_distance():
 	return false
 
 func _calculate_possibility():
-	if !possibilities.empty():
+	if !possibilities.is_empty():
 		randomize()
 		possibilities.shuffle()
 		var move = possibilities[randi() % possibilities.size()]

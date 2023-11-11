@@ -1,342 +1,342 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://t0s6ck0qgf6n"]
 
-[ext_resource path="res://ExternalPyramid.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Fred.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Rope.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Level.gd" type="Script" id=4]
-[ext_resource path="res://Ghost.tscn" type="PackedScene" id=5]
-[ext_resource path="res://InternalPyramid.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Hedgehog.tscn" type="PackedScene" id=7]
+[ext_resource type="PackedScene" path="res://ExternalPyramid.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://Fred.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://Rope.tscn" id="3"]
+[ext_resource type="Script" path="res://Level.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://dr4njfr7f8kbj" path="res://Ghost.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://InternalPyramid.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://Hedgehog.tscn" id="7"]
 
 [node name="Level" type="Node2D"]
-script = ExtResource( 4 )
+script = ExtResource("4")
 
 [node name="DebugCamera" type="Camera2D" parent="."]
-offset = Vector2( 512, 300 )
-zoom = Vector2( 1.5, 1.5 )
+offset = Vector2(512, 300)
+zoom = Vector2(1.5, 1.5)
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -0.333679
-margin_top = -0.471924
-margin_right = 1023.67
-margin_bottom = 599.528
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = -0.333679
+offset_top = -0.471924
+offset_right = 1023.67
+offset_bottom = 599.528
+color = Color(0, 0, 0, 1)
 
-[node name="ExternalPyramid" parent="." instance=ExtResource( 1 )]
+[node name="ExternalPyramid" parent="." instance=ExtResource("1")]
+format = 2
+layer_0/tile_data = PackedInt32Array(65529, 3, 0, 65530, 3, 0, 65531, 3, 0, 65532, 3, 0, 65533, 3, 0, 65534, 3, 0, 65535, 3, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 131072, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0, 28, 0, 0, 29, 0, 0, 30, 0, 0, 31, 0, 0, 32, 3, 0, 33, 3, 0, 34, 3, 0, 35, 3, 0, 36, 3, 0, 37, 3, 0, 38, 3, 0, 131065, 3, 0, 131066, 3, 0, 131067, 3, 0, 131068, 3, 0, 131069, 3, 0, 131070, 3, 0, 131071, 3, 0, 65536, 0, 0, 65567, 0, 0, 65568, 3, 0, 65569, 3, 0, 65570, 3, 0, 65571, 3, 0, 65572, 3, 0, 65573, 3, 0, 65574, 3, 0, 196601, 3, 0, 196602, 3, 0, 196603, 3, 0, 196604, 3, 0, 196605, 3, 0, 196606, 3, 0, 196607, 3, 0, 131072, 0, 0, 131103, 0, 0, 131104, 3, 0, 131105, 3, 0, 131106, 3, 0, 131107, 3, 0, 131108, 3, 0, 131109, 3, 0, 131110, 3, 0, 262137, 3, 0, 262138, 3, 0, 262139, 3, 0, 262140, 3, 0, 262141, 3, 0, 262142, 3, 0, 262143, 3, 0, 196608, 0, 0, 196639, 0, 0, 196640, 3, 0, 196641, 3, 0, 196642, 3, 0, 196643, 3, 0, 196644, 3, 0, 196645, 3, 0, 196646, 3, 0, 327673, 3, 0, 327674, 3, 0, 327675, 3, 0, 327676, 3, 0, 327677, 3, 0, 327678, 3, 0, 327679, 3, 0, 262144, 0, 0, 262175, 0, 0, 262176, 3, 0, 262177, 3, 0, 262178, 3, 0, 262179, 3, 0, 262180, 3, 0, 262181, 3, 0, 262182, 3, 0, 393209, 3, 0, 393210, 3, 0, 393211, 3, 0, 393212, 3, 0, 393213, 3, 0, 393214, 3, 0, 393215, 3, 0, 327680, 0, 0, 327711, 0, 0, 327712, 3, 0, 327713, 3, 0, 327714, 3, 0, 327715, 3, 0, 327716, 3, 0, 327717, 3, 0, 327718, 3, 0, 458745, 3, 0, 458746, 3, 0, 458747, 3, 0, 458748, 3, 0, 458749, 3, 0, 458750, 3, 0, 458751, 3, 0, 393216, 0, 0, 393247, 0, 0, 393248, 3, 0, 393249, 3, 0, 393250, 3, 0, 393251, 3, 0, 393252, 3, 0, 393253, 3, 0, 393254, 3, 0, 524281, 3, 0, 524282, 3, 0, 524283, 3, 0, 524284, 3, 0, 524285, 3, 0, 524286, 3, 0, 524287, 3, 0, 458752, 0, 0, 458783, 0, 0, 458784, 3, 0, 458785, 3, 0, 458786, 3, 0, 458787, 3, 0, 458788, 3, 0, 458789, 3, 0, 458790, 3, 0, 589817, 3, 0, 589818, 3, 0, 589819, 3, 0, 589820, 3, 0, 589821, 3, 0, 589822, 3, 0, 589823, 3, 0, 524288, 0, 0, 524319, 0, 0, 524320, 3, 0, 524321, 3, 0, 524322, 3, 0, 524323, 3, 0, 524324, 3, 0, 524325, 3, 0, 524326, 3, 0, 655353, 3, 0, 655354, 3, 0, 655355, 3, 0, 655356, 3, 0, 655357, 3, 0, 655358, 3, 0, 655359, 3, 0, 589824, 0, 0, 589855, 0, 0, 589856, 3, 0, 589857, 3, 0, 589858, 3, 0, 589859, 3, 0, 589860, 3, 0, 589861, 3, 0, 589862, 3, 0, 720889, 3, 0, 720890, 3, 0, 720891, 3, 0, 720892, 3, 0, 720893, 3, 0, 720894, 3, 0, 720895, 3, 0, 655360, 0, 0, 655391, 0, 0, 655392, 3, 0, 655393, 3, 0, 655394, 3, 0, 655395, 3, 0, 655396, 3, 0, 655397, 3, 0, 655398, 3, 0, 786425, 3, 0, 786426, 3, 0, 786427, 3, 0, 786428, 3, 0, 786429, 3, 0, 786430, 3, 0, 786431, 3, 0, 720896, 0, 0, 720927, 0, 0, 720928, 3, 0, 720929, 3, 0, 720930, 3, 0, 720931, 3, 0, 720932, 3, 0, 720933, 3, 0, 720934, 3, 0, 851961, 3, 0, 851962, 3, 0, 851963, 3, 0, 851964, 3, 0, 851965, 3, 0, 851966, 3, 0, 851967, 3, 0, 786432, 0, 0, 786463, 0, 0, 786464, 3, 0, 786465, 3, 0, 786466, 3, 0, 786467, 3, 0, 786468, 3, 0, 786469, 3, 0, 786470, 3, 0, 917497, 3, 0, 917498, 3, 0, 917499, 3, 0, 917500, 3, 0, 917501, 3, 0, 917502, 3, 0, 917503, 3, 0, 851968, 0, 0, 851999, 0, 0, 852000, 3, 0, 852001, 3, 0, 852002, 3, 0, 852003, 3, 0, 852004, 3, 0, 852005, 3, 0, 852006, 3, 0, 983033, 3, 0, 983034, 3, 0, 983035, 3, 0, 983036, 3, 0, 983037, 3, 0, 983038, 3, 0, 983039, 3, 0, 917504, 0, 0, 917505, 0, 0, 917506, 0, 0, 917507, 0, 0, 917508, 0, 0, 917509, 0, 0, 917510, 0, 0, 917511, 0, 0, 917512, 0, 0, 917513, 0, 0, 917514, 0, 0, 917515, 0, 0, 917516, 0, 0, 917517, 0, 0, 917518, 0, 0, 917519, 131072, 0, 917520, 0, 0, 917521, 0, 0, 917522, 0, 0, 917523, 0, 0, 917524, 0, 0, 917525, 0, 0, 917526, 0, 0, 917527, 0, 0, 917528, 0, 0, 917529, 0, 0, 917530, 0, 0, 917531, 0, 0, 917532, 0, 0, 917533, 0, 0, 917534, 0, 0, 917535, 0, 0, 917536, 3, 0, 917537, 3, 0, 917538, 3, 0, 917539, 3, 0, 917540, 3, 0, 917541, 3, 0, 917542, 3, 0, 1048569, 3, 0, 1048570, 3, 0, 1048571, 3, 0, 1048572, 3, 0, 1048573, 3, 0, 1048574, 3, 0, 1048575, 3, 0, 983040, 3, 0, 983041, 3, 0, 983042, 3, 0, 983043, 3, 0, 983044, 3, 0, 983045, 3, 0, 983046, 3, 0, 983047, 3, 0, 983048, 3, 0, 983049, 3, 0, 983050, 3, 0, 983051, 3, 0, 983052, 3, 0, 983053, 3, 0, 983054, 3, 0, 983055, 3, 0, 983056, 3, 0, 983057, 3, 0, 983058, 3, 0, 983059, 3, 0, 983060, 3, 0, 983061, 3, 0, 983062, 3, 0, 983063, 3, 0, 983064, 3, 0, 983065, 3, 0, 983066, 3, 0, 983067, 3, 0, 983068, 3, 0, 983069, 3, 0, 983070, 3, 0, 983071, 3, 0, 983072, 3, 0, 983073, 3, 0, 983074, 3, 0, 983075, 3, 0, 983076, 3, 0, 983077, 3, 0, 983078, 3, 0, 1114105, 3, 0, 1114106, 3, 0, 1114107, 3, 0, 1114108, 3, 0, 1114109, 3, 0, 1114110, 3, 0, 1114111, 3, 0, 1048576, 3, 0, 1048577, 3, 0, 1048578, 3, 0, 1048579, 3, 0, 1048580, 3, 0, 1048581, 3, 0, 1048582, 3, 0, 1048583, 3, 0, 1048584, 3, 0, 1048585, 3, 0, 1048586, 3, 0, 1048587, 3, 0, 1048588, 3, 0, 1048589, 3, 0, 1048590, 3, 0, 1048591, 3, 0, 1048592, 3, 0, 1048593, 3, 0, 1048594, 3, 0, 1048595, 3, 0, 1048596, 3, 0, 1048597, 3, 0, 1048598, 3, 0, 1048599, 3, 0, 1048600, 3, 0, 1048601, 3, 0, 1048602, 3, 0, 1048603, 3, 0, 1048604, 3, 0, 1048605, 3, 0, 1048606, 3, 0, 1048607, 3, 0, 1048608, 3, 0, 1048609, 3, 0, 1048610, 3, 0, 1048611, 3, 0, 1048612, 3, 0, 1048613, 3, 0, 1048614, 3, 0, 1179641, 3, 0, 1179642, 3, 0, 1179643, 3, 0, 1179644, 3, 0, 1179645, 3, 0, 1179646, 3, 0, 1179647, 3, 0, 1114112, 3, 0, 1114113, 3, 0, 1114114, 3, 0, 1114115, 3, 0, 1114116, 3, 0, 1114117, 3, 0, 1114118, 3, 0, 1114119, 3, 0, 1114120, 3, 0, 1114121, 3, 0, 1114122, 3, 0, 1114123, 3, 0, 1114124, 3, 0, 1114125, 3, 0, 1114126, 3, 0, 1114127, 3, 0, 1114128, 3, 0, 1114129, 3, 0, 1114130, 3, 0, 1114131, 3, 0, 1114132, 3, 0, 1114133, 3, 0, 1114134, 3, 0, 1114135, 3, 0, 1114136, 3, 0, 1114137, 3, 0, 1114138, 3, 0, 1114139, 3, 0, 1114140, 3, 0, 1114141, 3, 0, 1114142, 3, 0, 1114143, 3, 0, 1114144, 3, 0, 1114145, 3, 0, 1114146, 3, 0, 1114147, 3, 0, 1114148, 3, 0, 1114149, 3, 0, 1114150, 3, 0)
 
-[node name="InternalPyramid" parent="." instance=ExtResource( 6 )]
-position = Vector2( 0, -1 )
+[node name="InternalPyramid" parent="." instance=ExtResource("6")]
+position = Vector2(0, -1)
+format = 2
+layer_0/tile_data = PackedInt32Array(131074, 131072, 0, 131075, 131072, 0, 131076, 131072, 0, 131077, 131072, 0, 131078, 131072, 0, 131079, 131072, 0, 131080, 131072, 0, 131082, 131072, 0, 131083, 131072, 0, 131084, 131072, 0, 131085, 131072, 0, 131086, 131072, 0, 131087, 131072, 0, 131088, 131072, 0, 131089, 131072, 0, 131090, 131072, 0, 131091, 131072, 0, 131093, 131072, 0, 131095, 131072, 0, 131096, 131072, 0, 131097, 131072, 0, 131099, 131072, 0, 131100, 131072, 0, 131101, 131072, 0, 196623, 0, 0, 196629, 0, 0, 196631, 0, 0, 196633, 0, 0, 196635, 0, 0, 196637, 0, 0, 262145, 131072, 0, 262146, 131072, 0, 262147, 131072, 0, 262148, 131072, 0, 262150, 131072, 0, 262151, 131072, 0, 262152, 131072, 0, 262153, 131072, 0, 262154, 131072, 0, 262155, 131072, 0, 262156, 131072, 0, 262157, 131072, 0, 262158, 0, 0, 262159, 131072, 0, 262161, 131072, 0, 262162, 131072, 0, 262163, 131072, 0, 262165, 131072, 0, 262167, 131072, 0, 262169, 131072, 0, 262170, 131072, 0, 262171, 131072, 0, 262173, 131072, 0, 327689, 0, 0, 327691, 0, 0, 327693, 0, 0, 327695, 0, 0, 327697, 0, 0, 327699, 0, 0, 327701, 0, 0, 327703, 0, 0, 327709, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393225, 0, 0, 393227, 0, 0, 393229, 0, 0, 393231, 0, 0, 393232, 0, 0, 393233, 0, 0, 393235, 0, 0, 393237, 0, 0, 393239, 0, 0, 393240, 0, 0, 393241, 0, 0, 393242, 0, 0, 393243, 0, 0, 393244, 0, 0, 393245, 0, 0, 458759, 0, 0, 458763, 0, 0, 458765, 0, 0, 458771, 0, 0, 458773, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 524307, 0, 0, 524308, 0, 0, 524309, 0, 0, 524311, 0, 0, 524312, 0, 0, 524313, 0, 0, 524314, 0, 0, 524315, 0, 0, 524316, 0, 0, 524317, 0, 0, 589847, 0, 0, 589853, 0, 0, 655361, 0, 0, 655362, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655368, 0, 0, 655369, 0, 0, 655370, 0, 0, 655371, 0, 0, 655373, 0, 0, 655374, 0, 0, 655375, 0, 0, 655376, 0, 0, 655377, 0, 0, 655378, 0, 0, 655380, 0, 0, 655381, 0, 0, 655382, 0, 0, 655383, 0, 0, 655385, 0, 0, 655386, 0, 0, 655387, 0, 0, 655389, 0, 0, 720903, 0, 0, 720907, 0, 0, 720909, 0, 0, 720921, 0, 0, 720923, 0, 0, 720925, 0, 0, 786433, 0, 0, 786434, 0, 0, 786435, 0, 0, 786436, 0, 0, 786437, 0, 0, 786438, 0, 0, 786439, 0, 0, 786441, 0, 0, 786442, 0, 0, 786443, 0, 0, 786445, 0, 0, 786447, 0, 0, 786448, 0, 0, 786449, 0, 0, 786450, 0, 0, 786451, 0, 0, 786452, 0, 0, 786453, 0, 0, 786454, 0, 0, 786455, 0, 0, 786457, 0, 0, 786459, 0, 0, 786460, 0, 0, 786461, 0, 0, 851993, 0, 0)
 
-[node name="Ghost" parent="." instance=ExtResource( 5 )]
-position = Vector2( 150, 545 )
+[node name="Ghost" parent="." instance=ExtResource("5")]
+position = Vector2(150, 545)
 
-[node name="Fred" parent="." instance=ExtResource( 2 )]
-position = Vector2( 250, 544 )
+[node name="Fred" parent="." instance=ExtResource("2")]
+position = Vector2(250, 544)
 
 [node name="FredCamera" type="Camera2D" parent="Fred"]
-current = true
-zoom = Vector2( 0.5, 0.5 )
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-drag_margin_left = 0.05
-drag_margin_top = 0.05
-drag_margin_right = 0.05
-drag_margin_bottom = 0.05
+zoom = Vector2(0.5, 0.5)
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.05
+drag_top_margin = 0.05
+drag_right_margin = 0.05
+drag_bottom_margin = 0.05
 editor_draw_drag_margin = true
 
-[node name="Top1" parent="." instance=ExtResource( 3 )]
-position = Vector2( 398, 218.952 )
+[node name="Top1" parent="." instance=ExtResource("3")]
+position = Vector2(398, 218.952)
 
-[node name="Rope3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 398, 258.972 )
+[node name="Rope3" parent="." instance=ExtResource("3")]
+position = Vector2(398, 258.972)
 
-[node name="Rope4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 398, 299.132 )
+[node name="Rope4" parent="." instance=ExtResource("3")]
+position = Vector2(398, 299.132)
 
-[node name="Rope5" parent="." instance=ExtResource( 3 )]
-position = Vector2( 398, 339.292 )
+[node name="Rope5" parent="." instance=ExtResource("3")]
+position = Vector2(398, 339.292)
 
-[node name="Rope6" parent="." instance=ExtResource( 3 )]
-position = Vector2( 398, 379.137 )
+[node name="Rope6" parent="." instance=ExtResource("3")]
+position = Vector2(398, 379.137)
 
-[node name="Rope7" parent="." instance=ExtResource( 3 )]
-position = Vector2( 398, 419.14 )
+[node name="Rope7" parent="." instance=ExtResource("3")]
+position = Vector2(398, 419.14)
 
-[node name="Rope8" parent="." instance=ExtResource( 3 )]
-position = Vector2( 398, 459.3 )
+[node name="Rope8" parent="." instance=ExtResource("3")]
+position = Vector2(398, 459.3)
 
-[node name="Rope9" parent="." instance=ExtResource( 3 )]
-position = Vector2( 398, 498.58 )
+[node name="Rope9" parent="." instance=ExtResource("3")]
+position = Vector2(398, 498.58)
 
-[node name="Bottom1" parent="." instance=ExtResource( 3 )]
-position = Vector2( 398, 538.731 )
+[node name="Bottom1" parent="." instance=ExtResource("3")]
+position = Vector2(398, 538.731)
 
-[node name="Bottom3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 271.723, 539.731 )
+[node name="Bottom3" parent="." instance=ExtResource("3")]
+position = Vector2(271.723, 539.731)
 
-[node name="Bottom4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 207.376, 379.137 )
+[node name="Bottom4" parent="." instance=ExtResource("3")]
+position = Vector2(207.376, 379.137)
 
-[node name="Bottom5" parent="." instance=ExtResource( 3 )]
-position = Vector2( 269.392, 298.817 )
+[node name="Bottom5" parent="." instance=ExtResource("3")]
+position = Vector2(269.392, 298.817)
 
-[node name="Bottom18" parent="." instance=ExtResource( 3 )]
-position = Vector2( 334.534, 299.787 )
+[node name="Bottom18" parent="." instance=ExtResource("3")]
+position = Vector2(334.534, 299.787)
 
-[node name="Bottom6" parent="." instance=ExtResource( 3 )]
-position = Vector2( 174.264, 218.952 )
+[node name="Bottom6" parent="." instance=ExtResource("3")]
+position = Vector2(174.264, 218.952)
 
-[node name="Bottom8" parent="." instance=ExtResource( 3 )]
-position = Vector2( 303.627, 138.976 )
+[node name="Bottom8" parent="." instance=ExtResource("3")]
+position = Vector2(303.627, 138.976)
 
-[node name="Bottom16" parent="." instance=ExtResource( 3 )]
-position = Vector2( 495.765, 59.8426 )
+[node name="Bottom16" parent="." instance=ExtResource("3")]
+position = Vector2(495.765, 59.8426)
 
-[node name="End" parent="." instance=ExtResource( 3 )]
-position = Vector2( 495.765, 19.8401 )
+[node name="End" parent="." instance=ExtResource("3")]
+position = Vector2(495.765, 19.8401)
 
-[node name="Bottom9" parent="." instance=ExtResource( 3 )]
-position = Vector2( 464.126, 298.787 )
+[node name="Bottom9" parent="." instance=ExtResource("3")]
+position = Vector2(464.126, 298.787)
 
-[node name="Bottom11" parent="." instance=ExtResource( 3 )]
-position = Vector2( 590.966, 299.132 )
+[node name="Bottom11" parent="." instance=ExtResource("3")]
+position = Vector2(590.966, 299.132)
 
-[node name="Bottom12" parent="." instance=ExtResource( 3 )]
-position = Vector2( 655.372, 299.429 )
+[node name="Bottom12" parent="." instance=ExtResource("3")]
+position = Vector2(655.372, 299.429)
 
-[node name="Bottom23" parent="." instance=ExtResource( 3 )]
-position = Vector2( 911.636, 220.199 )
+[node name="Bottom23" parent="." instance=ExtResource("3")]
+position = Vector2(911.636, 220.199)
 
-[node name="Bottom22" parent="." instance=ExtResource( 3 )]
-position = Vector2( 783.754, 219.611 )
+[node name="Bottom22" parent="." instance=ExtResource("3")]
+position = Vector2(783.754, 219.611)
 
-[node name="Bottom24" parent="." instance=ExtResource( 3 )]
-position = Vector2( 846.894, 138.976 )
+[node name="Bottom24" parent="." instance=ExtResource("3")]
+position = Vector2(846.894, 138.976)
 
-[node name="Bottom13" parent="." instance=ExtResource( 3 )]
-position = Vector2( 718.697, 379.137 )
+[node name="Bottom13" parent="." instance=ExtResource("3")]
+position = Vector2(718.697, 379.137)
 
-[node name="Bottom14" parent="." instance=ExtResource( 3 )]
-position = Vector2( 623.074, 458.914 )
+[node name="Bottom14" parent="." instance=ExtResource("3")]
+position = Vector2(623.074, 458.914)
 
-[node name="Bottom17" parent="." instance=ExtResource( 3 )]
-position = Vector2( 782.754, 539.731 )
+[node name="Bottom17" parent="." instance=ExtResource("3")]
+position = Vector2(782.754, 539.731)
 
-[node name="Bottom19" parent="." instance=ExtResource( 3 )]
-position = Vector2( 846.894, 538.731 )
+[node name="Bottom19" parent="." instance=ExtResource("3")]
+position = Vector2(846.894, 538.731)
 
-[node name="Bottom20" parent="." instance=ExtResource( 3 )]
-position = Vector2( 974.926, 540.621 )
+[node name="Bottom20" parent="." instance=ExtResource("3")]
+position = Vector2(974.926, 540.621)
 
-[node name="Bottom21" parent="." instance=ExtResource( 3 )]
-position = Vector2( 911.526, 458.914 )
+[node name="Bottom21" parent="." instance=ExtResource("3")]
+position = Vector2(911.526, 458.914)
 
-[node name="Bottom15" parent="." instance=ExtResource( 3 )]
-position = Vector2( 463.126, 539.731 )
+[node name="Bottom15" parent="." instance=ExtResource("3")]
+position = Vector2(463.126, 539.731)
 
-[node name="Bottom10" parent="." instance=ExtResource( 3 )]
-position = Vector2( 527.748, 219.809 )
+[node name="Bottom10" parent="." instance=ExtResource("3")]
+position = Vector2(527.748, 219.809)
 
-[node name="Bottom7" parent="." instance=ExtResource( 3 )]
-position = Vector2( 46.5836, 139.976 )
+[node name="Bottom7" parent="." instance=ExtResource("3")]
+position = Vector2(46.5836, 139.976)
 
-[node name="Top3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 271.723, 459.3 )
+[node name="Top3" parent="." instance=ExtResource("3")]
+position = Vector2(271.723, 459.3)
 
-[node name="Top4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 207.376, 299.787 )
+[node name="Top4" parent="." instance=ExtResource("3")]
+position = Vector2(207.376, 299.787)
 
-[node name="Top5" parent="." instance=ExtResource( 3 )]
-position = Vector2( 269.392, 218.952 )
+[node name="Top5" parent="." instance=ExtResource("3")]
+position = Vector2(269.392, 218.952)
 
-[node name="Top6" parent="." instance=ExtResource( 3 )]
-position = Vector2( 174.264, 138.976 )
+[node name="Top6" parent="." instance=ExtResource("3")]
+position = Vector2(174.264, 138.976)
 
-[node name="Top17" parent="." instance=ExtResource( 3 )]
-position = Vector2( 334.534, 219.611 )
+[node name="Top17" parent="." instance=ExtResource("3")]
+position = Vector2(334.534, 219.611)
 
-[node name="Top8" parent="." instance=ExtResource( 3 )]
-position = Vector2( 303.627, 58.8426 )
+[node name="Top8" parent="." instance=ExtResource("3")]
+position = Vector2(303.627, 58.8426)
 
-[node name="Top7" parent="." instance=ExtResource( 3 )]
-position = Vector2( 46.5836, 59.562 )
+[node name="Top7" parent="." instance=ExtResource("3")]
+position = Vector2(46.5836, 59.562)
 
-[node name="Top11" parent="." instance=ExtResource( 3 )]
-position = Vector2( 590.966, 218.902 )
+[node name="Top11" parent="." instance=ExtResource("3")]
+position = Vector2(590.966, 218.902)
 
-[node name="Top14" parent="." instance=ExtResource( 3 )]
-position = Vector2( 623.074, 379.445 )
+[node name="Top14" parent="." instance=ExtResource("3")]
+position = Vector2(623.074, 379.445)
 
-[node name="Top16" parent="." instance=ExtResource( 3 )]
-position = Vector2( 782.754, 379.822 )
+[node name="Top16" parent="." instance=ExtResource("3")]
+position = Vector2(782.754, 379.822)
 
-[node name="Top23" parent="." instance=ExtResource( 3 )]
-position = Vector2( 911.526, 379.137 )
+[node name="Top23" parent="." instance=ExtResource("3")]
+position = Vector2(911.526, 379.137)
 
-[node name="Top22" parent="." instance=ExtResource( 3 )]
-position = Vector2( 846.894, 459.127 )
+[node name="Top22" parent="." instance=ExtResource("3")]
+position = Vector2(846.894, 459.127)
 
-[node name="Top15" parent="." instance=ExtResource( 3 )]
-position = Vector2( 463.126, 459.419 )
+[node name="Top15" parent="." instance=ExtResource("3")]
+position = Vector2(463.126, 459.419)
 
-[node name="Top10" parent="." instance=ExtResource( 3 )]
-position = Vector2( 527.748, 138.976 )
+[node name="Top10" parent="." instance=ExtResource("3")]
+position = Vector2(527.748, 138.976)
 
-[node name="Top12" parent="." instance=ExtResource( 3 )]
-position = Vector2( 655.372, 59.2646 )
+[node name="Top12" parent="." instance=ExtResource("3")]
+position = Vector2(655.372, 59.2646)
 
-[node name="Top13" parent="." instance=ExtResource( 3 )]
-position = Vector2( 718.697, 59.562 )
+[node name="Top13" parent="." instance=ExtResource("3")]
+position = Vector2(718.697, 59.562)
 
-[node name="Top18" parent="." instance=ExtResource( 3 )]
-position = Vector2( 846.894, 58.8769 )
+[node name="Top18" parent="." instance=ExtResource("3")]
+position = Vector2(846.894, 58.8769)
 
-[node name="Top20" parent="." instance=ExtResource( 3 )]
-position = Vector2( 974.926, 59.8426 )
+[node name="Top20" parent="." instance=ExtResource("3")]
+position = Vector2(974.926, 59.8426)
 
-[node name="Top19" parent="." instance=ExtResource( 3 )]
-position = Vector2( 783.754, 139.225 )
+[node name="Top19" parent="." instance=ExtResource("3")]
+position = Vector2(783.754, 139.225)
 
-[node name="Top21" parent="." instance=ExtResource( 3 )]
-position = Vector2( 911.636, 139.855 )
+[node name="Top21" parent="." instance=ExtResource("3")]
+position = Vector2(911.636, 139.855)
 
-[node name="Rope11" parent="." instance=ExtResource( 3 )]
-position = Vector2( 271.723, 499.322 )
+[node name="Rope11" parent="." instance=ExtResource("3")]
+position = Vector2(271.723, 499.322)
 
-[node name="Rope12" parent="." instance=ExtResource( 3 )]
-position = Vector2( 207.376, 339.292 )
+[node name="Rope12" parent="." instance=ExtResource("3")]
+position = Vector2(207.376, 339.292)
 
-[node name="Rope13" parent="." instance=ExtResource( 3 )]
-position = Vector2( 269.392, 259.08 )
+[node name="Rope13" parent="." instance=ExtResource("3")]
+position = Vector2(269.392, 259.08)
 
-[node name="Rope39" parent="." instance=ExtResource( 3 )]
-position = Vector2( 334.534, 260.08 )
+[node name="Rope39" parent="." instance=ExtResource("3")]
+position = Vector2(334.534, 260.08)
 
-[node name="Rope19" parent="." instance=ExtResource( 3 )]
-position = Vector2( 464.126, 259.08 )
+[node name="Rope19" parent="." instance=ExtResource("3")]
+position = Vector2(464.126, 259.08)
 
-[node name="Top25" parent="." instance=ExtResource( 3 )]
-position = Vector2( 464.126, 219.809 )
+[node name="Top25" parent="." instance=ExtResource("3")]
+position = Vector2(464.126, 219.809)
 
-[node name="Rope21" parent="." instance=ExtResource( 3 )]
-position = Vector2( 590.966, 258.783 )
+[node name="Rope21" parent="." instance=ExtResource("3")]
+position = Vector2(590.966, 258.783)
 
-[node name="Rope26" parent="." instance=ExtResource( 3 )]
-position = Vector2( 655.372, 98.863 )
+[node name="Rope26" parent="." instance=ExtResource("3")]
+position = Vector2(655.372, 98.863)
 
-[node name="Rope27" parent="." instance=ExtResource( 3 )]
-position = Vector2( 718.697, 99.5657 )
+[node name="Rope27" parent="." instance=ExtResource("3")]
+position = Vector2(718.697, 99.5657)
 
-[node name="Rope40" parent="." instance=ExtResource( 3 )]
-position = Vector2( 846.894, 98.863 )
+[node name="Rope40" parent="." instance=ExtResource("3")]
+position = Vector2(846.894, 98.863)
 
-[node name="Rope41" parent="." instance=ExtResource( 3 )]
-position = Vector2( 783.754, 178.997 )
+[node name="Rope41" parent="." instance=ExtResource("3")]
+position = Vector2(783.754, 178.997)
 
-[node name="Rope42" parent="." instance=ExtResource( 3 )]
-position = Vector2( 911.636, 179.997 )
+[node name="Rope42" parent="." instance=ExtResource("3")]
+position = Vector2(911.636, 179.997)
 
-[node name="Rope25" parent="." instance=ExtResource( 3 )]
-position = Vector2( 655.372, 139.225 )
+[node name="Rope25" parent="." instance=ExtResource("3")]
+position = Vector2(655.372, 139.225)
 
-[node name="Rope28" parent="." instance=ExtResource( 3 )]
-position = Vector2( 718.697, 139.976 )
+[node name="Rope28" parent="." instance=ExtResource("3")]
+position = Vector2(718.697, 139.976)
 
-[node name="Rope24" parent="." instance=ExtResource( 3 )]
-position = Vector2( 655.372, 178.997 )
+[node name="Rope24" parent="." instance=ExtResource("3")]
+position = Vector2(655.372, 178.997)
 
-[node name="Rope29" parent="." instance=ExtResource( 3 )]
-position = Vector2( 718.697, 179.682 )
+[node name="Rope29" parent="." instance=ExtResource("3")]
+position = Vector2(718.697, 179.682)
 
-[node name="Rope43" parent="." instance=ExtResource( 3 )]
-position = Vector2( 974.926, 99.7406 )
+[node name="Rope43" parent="." instance=ExtResource("3")]
+position = Vector2(974.926, 99.7406)
 
-[node name="Rope44" parent="." instance=ExtResource( 3 )]
-position = Vector2( 974.926, 139.976 )
+[node name="Rope44" parent="." instance=ExtResource("3")]
+position = Vector2(974.926, 139.976)
 
-[node name="Rope45" parent="." instance=ExtResource( 3 )]
-position = Vector2( 974.926, 179.682 )
+[node name="Rope45" parent="." instance=ExtResource("3")]
+position = Vector2(974.926, 179.682)
 
-[node name="Rope46" parent="." instance=ExtResource( 3 )]
-position = Vector2( 974.926, 220.199 )
+[node name="Rope46" parent="." instance=ExtResource("3")]
+position = Vector2(974.926, 220.199)
 
-[node name="Rope47" parent="." instance=ExtResource( 3 )]
-position = Vector2( 974.926, 260.08 )
+[node name="Rope47" parent="." instance=ExtResource("3")]
+position = Vector2(974.926, 260.08)
 
-[node name="Rope48" parent="." instance=ExtResource( 3 )]
-position = Vector2( 974.926, 300.472 )
+[node name="Rope48" parent="." instance=ExtResource("3")]
+position = Vector2(974.926, 300.472)
 
-[node name="Rope49" parent="." instance=ExtResource( 3 )]
-position = Vector2( 974.926, 340.292 )
+[node name="Rope49" parent="." instance=ExtResource("3")]
+position = Vector2(974.926, 340.292)
 
-[node name="Rope50" parent="." instance=ExtResource( 3 )]
-position = Vector2( 974.926, 380.445 )
+[node name="Rope50" parent="." instance=ExtResource("3")]
+position = Vector2(974.926, 380.445)
 
-[node name="Rope51" parent="." instance=ExtResource( 3 )]
-position = Vector2( 974.926, 420.14 )
+[node name="Rope51" parent="." instance=ExtResource("3")]
+position = Vector2(974.926, 420.14)
 
-[node name="Rope52" parent="." instance=ExtResource( 3 )]
-position = Vector2( 974.926, 460.127 )
+[node name="Rope52" parent="." instance=ExtResource("3")]
+position = Vector2(974.926, 460.127)
 
-[node name="Rope54" parent="." instance=ExtResource( 3 )]
-position = Vector2( 846.894, 499.322 )
+[node name="Rope54" parent="." instance=ExtResource("3")]
+position = Vector2(846.894, 499.322)
 
-[node name="Rope53" parent="." instance=ExtResource( 3 )]
-position = Vector2( 974.926, 500.322 )
+[node name="Rope53" parent="." instance=ExtResource("3")]
+position = Vector2(974.926, 500.322)
 
-[node name="Rope23" parent="." instance=ExtResource( 3 )]
-position = Vector2( 655.372, 219.199 )
+[node name="Rope23" parent="." instance=ExtResource("3")]
+position = Vector2(655.372, 219.199)
 
-[node name="Rope30" parent="." instance=ExtResource( 3 )]
-position = Vector2( 718.697, 220.199 )
+[node name="Rope30" parent="." instance=ExtResource("3")]
+position = Vector2(718.697, 220.199)
 
-[node name="Rope22" parent="." instance=ExtResource( 3 )]
-position = Vector2( 655.372, 259.08 )
+[node name="Rope22" parent="." instance=ExtResource("3")]
+position = Vector2(655.372, 259.08)
 
-[node name="Rope33" parent="." instance=ExtResource( 3 )]
-position = Vector2( 718.697, 339.292 )
+[node name="Rope33" parent="." instance=ExtResource("3")]
+position = Vector2(718.697, 339.292)
 
-[node name="Rope36" parent="." instance=ExtResource( 3 )]
-position = Vector2( 782.754, 419.14 )
+[node name="Rope36" parent="." instance=ExtResource("3")]
+position = Vector2(782.754, 419.14)
 
-[node name="Rope55" parent="." instance=ExtResource( 3 )]
-position = Vector2( 911.526, 419.14 )
+[node name="Rope55" parent="." instance=ExtResource("3")]
+position = Vector2(911.526, 419.14)
 
-[node name="Rope34" parent="." instance=ExtResource( 3 )]
-position = Vector2( 623.074, 419.14 )
+[node name="Rope34" parent="." instance=ExtResource("3")]
+position = Vector2(623.074, 419.14)
 
-[node name="Rope38" parent="." instance=ExtResource( 3 )]
-position = Vector2( 782.754, 499.322 )
+[node name="Rope38" parent="." instance=ExtResource("3")]
+position = Vector2(782.754, 499.322)
 
-[node name="Rope37" parent="." instance=ExtResource( 3 )]
-position = Vector2( 782.754, 459.419 )
+[node name="Rope37" parent="." instance=ExtResource("3")]
+position = Vector2(782.754, 459.419)
 
-[node name="Rope35" parent="." instance=ExtResource( 3 )]
-position = Vector2( 463.126, 499.322 )
+[node name="Rope35" parent="." instance=ExtResource("3")]
+position = Vector2(463.126, 499.322)
 
-[node name="Rope32" parent="." instance=ExtResource( 3 )]
-position = Vector2( 718.697, 299.787 )
+[node name="Rope32" parent="." instance=ExtResource("3")]
+position = Vector2(718.697, 299.787)
 
-[node name="Rope31" parent="." instance=ExtResource( 3 )]
-position = Vector2( 718.697, 260.08 )
+[node name="Rope31" parent="." instance=ExtResource("3")]
+position = Vector2(718.697, 260.08)
 
-[node name="Rope14" parent="." instance=ExtResource( 3 )]
-position = Vector2( 174.264, 178.997 )
+[node name="Rope14" parent="." instance=ExtResource("3")]
+position = Vector2(174.264, 178.997)
 
-[node name="Rope16" parent="." instance=ExtResource( 3 )]
-position = Vector2( 303.627, 98.7406 )
+[node name="Rope16" parent="." instance=ExtResource("3")]
+position = Vector2(303.627, 98.7406)
 
-[node name="Rope20" parent="." instance=ExtResource( 3 )]
-position = Vector2( 527.748, 178.997 )
+[node name="Rope20" parent="." instance=ExtResource("3")]
+position = Vector2(527.748, 178.997)
 
-[node name="Rope15" parent="." instance=ExtResource( 3 )]
-position = Vector2( 46.5836, 99.863 )
+[node name="Rope15" parent="." instance=ExtResource("3")]
+position = Vector2(46.5836, 99.863)
 
-[node name="hedgehog" parent="." instance=ExtResource( 7 )]
-position = Vector2( 301.071, 475.355 )
+[node name="hedgehog" parent="." instance=ExtResource("7")]
+position = Vector2(301.071, 475.355)
 
-[node name="hedgehog2" parent="." instance=ExtResource( 7 )]
-position = Vector2( 38.071, 395.355 )
+[node name="hedgehog2" parent="." instance=ExtResource("7")]
+position = Vector2(38.071, 395.355)

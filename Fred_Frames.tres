@@ -1,45 +1,66 @@
-[gd_resource type="SpriteFrames" load_steps=9 format=2]
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://6jicd35rr8q6"]
 
-[ext_resource path="res://textures/fred/fred_walking_sheet.png" type="Texture" id=1]
-[ext_resource path="res://textures/fred/fred_idle.png" type="Texture" id=2]
-[ext_resource path="res://textures/fred/fred_jump.png" type="Texture" id=3]
-[ext_resource path="res://textures/fred/fred_climb.png" type="Texture" id=4]
+[ext_resource type="Texture2D" uid="uid://mcm5qo8rexti" path="res://textures/fred/fred_walking_sheet.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://3fb8q45up5ky" path="res://textures/fred/fred_idle.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://m8ckuibgs1pp" path="res://textures/fred/fred_jump.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://cvwhi8bfw3x3h" path="res://textures/fred/fred_climb.png" id="4"]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 32, 32 )
+[sub_resource type="AtlasTexture" id="1"]
+atlas = ExtResource("1")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
-region = Rect2( 32, 0, 32, 32 )
+[sub_resource type="AtlasTexture" id="2"]
+atlas = ExtResource("1")
+region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 1 )
-region = Rect2( 64, 0, 32, 32 )
+[sub_resource type="AtlasTexture" id="3"]
+atlas = ExtResource("1")
+region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
-region = Rect2( 96, 0, 32, 32 )
+[sub_resource type="AtlasTexture" id="4"]
+atlas = ExtResource("1")
+region = Rect2(96, 0, 32, 32)
 
 [resource]
-animations = [ {
-"frames": [ ExtResource( 2 ) ],
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}],
 "loop": true,
-"name": "idle",
+"name": &"climb",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
 "loop": true,
-"name": "climb",
+"name": &"idle",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
 "loop": true,
-"name": "walk",
+"name": &"jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("1")
+}, {
+"duration": 1.0,
+"texture": SubResource("2")
+}, {
+"duration": 1.0,
+"texture": SubResource("3")
+}, {
+"duration": 1.0,
+"texture": SubResource("4")
+}],
 "loop": true,
-"name": "jump",
+"name": &"walk",
 "speed": 5.0
-} ]
+}]
